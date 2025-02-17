@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SuperNova</string>
+    <string name="wifi_connected">wifiと接続できました。</string>
+    <string name="wifi_disconnected">wifiと接続できませんでした。</string>
+    <string name="led_control">LED制御</string>
+    <string name="refresh">データの更新</string>
+    <string name="led_on">LED点灯</string>
+    <string name="led_off">LED消灯</string>
 </resources>

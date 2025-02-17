@@ -1,47 +1,52 @@
 package supernova
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.supernova.ui.supernova.SuperNovaTheme
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SuperNovaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val tvSensorData: TextView = findViewById(R.id.tvSensorData)
+        val btnWifiConnect: Button = findViewById(R.id.btnWifiConnect)
+        val btnRed: Button = findViewById(R.id.btnRed)
+        val btnBlue: Button = findViewById(R.id.btnBlue)
+        val btnOrange: Button = findViewById(R.id.btnOrange)
+        val btnLedOn: Button = findViewById(R.id.btnLedOn)
+        val btnLedOff: Button = findViewById(R.id.btnLedOff)
+        val btnRefresh: Button = findViewById(R.id.btnRefresh)
+
+        // Wi-Fi接続処理（後で実装）
+        btnWifiConnect.setOnClickListener {
+            tvSensorData.text = "Wi-Fi: Connecting..."
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        // LED制御ボタン
+        btnRed.setOnClickListener {
+            tvSensorData.text = "LED Color: Red"
+        }
+        btnBlue.setOnClickListener {
+            tvSensorData.text = "LED Color: Blue"
+        }
+        btnOrange.setOnClickListener {
+            tvSensorData.text = "LED Color: green"
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SuperNovaTheme {
-        Greeting("supernova")
+        // LEDのON/OFF
+        btnLedOn.setOnClickListener {
+            tvSensorData.text = "LED: ON"
+        }
+        btnLedOff.setOnClickListener {
+            tvSensorData.text = "LED: OFF"
+        }
+
+        // センサーデータの更新（後で通信処理を追加）
+        btnRefresh.setOnClickListener {
+            tvSensorData.text = "Fetching sensor data..."
+        }
     }
 }
