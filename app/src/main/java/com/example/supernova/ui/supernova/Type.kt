@@ -1,4 +1,4 @@
-package com.example.supernova.ui.theme
+package com.example.supernova.ui.supernova
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
