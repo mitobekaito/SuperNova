@@ -1,4 +1,4 @@
-package com.example.supernova.ui.theme
+package com.example.supernova.ui.supernova
 
 import androidx.compose.ui.graphics.Color
 

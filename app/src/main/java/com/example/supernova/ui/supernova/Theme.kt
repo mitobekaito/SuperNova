@@ -1,6 +1,5 @@
-package com.example.supernova.ui.theme
+package com.example.supernova.ui.supernova
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
