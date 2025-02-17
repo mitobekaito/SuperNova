@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+
+    <!-- Wi-Fi接続ボタン -->
+    <Button
+        android:id="@+id/btnWifiConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect to Wi-Fi"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- センサーデータ表示エリア -->
+    <TextView
+        android:id="@+id/tvSensorData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Temperature: --°C\nHumidity: --%\nMoving: warming"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:background="@drawable/textview_border"
+        android:textStyle="bold" />
+
+    <!-- LEDの制御ボタン -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LED Control"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Red"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnBlue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Blue"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnOrange"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Green"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <!-- LED ON/OFFボタン -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/btnLedOn"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/green"
+            android:text="LED ON"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnLedOff"
+            android:layout_width="0dp"
+            android:layout_height="76dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/yellow"
+            android:text="LED OFF"
+            android:textColor="@color/red" />
+    </LinearLayout>
+
+    <!-- センサーデータの更新ボタン -->
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="483dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="Refresh Sensor Data"
+        android:textColor="@color/white" />
+</LinearLayout>
