@@ -1,15 +1,15 @@
-*.iml
-.gradle
+# Android Studio/Gradle のビルドファイル
+/.gradle/
+/build/
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/captures/
+/outputs/
+
+# IDE（Android Studio, IntelliJ）の設定ファイル
+/.idea/
+/*.iml
+/.vscode/
+
+# OS 特有のファイル
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+Thumbs.db
