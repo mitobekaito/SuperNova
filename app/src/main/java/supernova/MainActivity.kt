@@ -16,12 +16,11 @@ class MainActivity : AppCompatActivity() {
         val btnWifiConnect: Button = findViewById(R.id.btnWifiConnect)
         val btnRed: Button = findViewById(R.id.btnRed)
         val btnBlue: Button = findViewById(R.id.btnBlue)
-        val btnOrange: Button = findViewById(R.id.btnOrange)
+        val btnGreen: Button = findViewById(R.id.btnGreen)
         val btnLedOn: Button = findViewById(R.id.btnLedOn)
         val btnLedOff: Button = findViewById(R.id.btnLedOff)
-        val btnRefresh: Button = findViewById(R.id.btnRefresh)
 
-        // Wi-Fi接続処理（後で実装）
+        // Wi-Fi接続処理
         btnWifiConnect.setOnClickListener {
             tvSensorData.text = "Wi-Fi: Connecting..."
         }
@@ -33,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         btnBlue.setOnClickListener {
             tvSensorData.text = "LED Color: Blue"
         }
-        btnOrange.setOnClickListener {
-            tvSensorData.text = "LED Color: green"
+        btnGreen.setOnClickListener {
+            tvSensorData.text = "LED Color: Green"
         }
 
         // LEDのON/OFF
@@ -44,10 +43,6 @@ class MainActivity : AppCompatActivity() {
         btnLedOff.setOnClickListener {
             tvSensorData.text = "LED: OFF"
         }
-
-        // センサーデータの更新（後で通信処理を追加）
-        btnRefresh.setOnClickListener {
-            tvSensorData.text = "Fetching sensor data..."
-        }
     }
 }
+
