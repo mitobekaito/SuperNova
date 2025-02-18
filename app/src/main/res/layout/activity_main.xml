@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="@color/yellow">
+    android:background="@color/light_blue">
 
     <!-- ストリーク情報エリア -->
     <androidx.cardview.widget.CardView
@@ -41,7 +41,45 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- センサーデータ表示エリア -->
+    <!-- 温度・湿度表示エリア -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- 温度表示 -->
+            <TextView
+                android:id="@+id/tvTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--°C"
+                android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+            <!-- 湿度表示 -->
+            <TextView
+                android:id="@+id/tvHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity: --%"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 動作状態表示エリア -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,14 +96,15 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tvSensorData"
+                android:id="@+id/tvMoving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature: --°C\nHumidity: --%\nMoving: warning"
+                android:text="Moving: warning"
                 android:textSize="18sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/btnWifiConnect"
@@ -75,6 +114,67 @@
         android:backgroundTint="@color/teal_700"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
+
+    <!-- 動作状態表示エリア -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvMoving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moving: warning"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- センサーステータス表示エリア -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvMotionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motion Detected: No"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvAlarmStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm: OFF"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
 
     <!-- LED 制御ボタン -->
