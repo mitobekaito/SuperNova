@@ -115,66 +115,100 @@
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
 
-    <!-- 動作状態表示エリア -->
+
+    <!--  Motion DetectedのON/OFFボタンエリア  -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        android:background="@color/white">
+        android:background="@color/yellow">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
+            <!-- サウンドのラベル -->
             <TextView
-                android:id="@+id/tvMoving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moving: warning"
+                android:text="Motion Detected"
                 android:textSize="18sp"
-                android:textColor="@color/black"/>
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- ONボタン -->
+            <Button
+                android:id="@+id/btnSoundOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/white"/>
+
+            <!-- OFFボタン -->
+            <Button
+                android:id="@+id/btnSoundOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- センサーステータス表示エリア -->
+    <!-- アラームのON/OFFボタンエリア -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        android:background="@color/white">
+        android:background="@color/yellow">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
+            <!-- アラームのラベル -->
             <TextView
-                android:id="@+id/tvMotionStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Motion Detected: No"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:text="Alarm                   "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginEnd="16dp"/>
 
-            <TextView
-                android:id="@+id/tvAlarmStatus"
+            <!-- ONボタン -->
+            <Button
+                android:id="@+id/btnAlarmOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alarm: OFF"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:text="ON"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/white"/>
+
+            <!-- OFFボタン -->
+            <Button
+                android:id="@+id/btnAlarmOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 
 
     <!-- LED 制御ボタン -->

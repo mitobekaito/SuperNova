@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,14 +15,20 @@ class MainActivity : AppCompatActivity() {
         val tvTemperature: TextView = findViewById(R.id.tvTemperature)
         val tvHumidity: TextView = findViewById(R.id.tvHumidity)
         val tvMoving: TextView = findViewById(R.id.tvMoving)
-        val tvMotionStatus: TextView = findViewById(R.id.tvMotionStatus)
-        val tvAlarmStatus: TextView = findViewById(R.id.tvAlarmStatus)
         val btnWifiConnect: Button = findViewById(R.id.btnWifiConnect)
         val btnRed: Button = findViewById(R.id.btnRed)
         val btnBlue: Button = findViewById(R.id.btnBlue)
         val btnGreen: Button = findViewById(R.id.btnGreen)
         val btnLedOn: Button = findViewById(R.id.btnLedOn)
         val btnLedOff: Button = findViewById(R.id.btnLedOff)
+
+        // ON/OFFボタン
+        val btnSoundOn: Button = findViewById(R.id.btnSoundOn)
+        val btnSoundOff: Button = findViewById(R.id.btnSoundOff)
+
+        // アラームON/OFFボタン
+        val btnAlarmOn: Button = findViewById(R.id.btnAlarmOn)
+        val btnAlarmOff: Button = findViewById(R.id.btnAlarmOff)
 
         // 温度の初期表示を "--°C" のみに設定
         tvTemperature.text = "--°C"
@@ -56,22 +63,41 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        // 動体検知の状態を切り替える例（テスト用）
-        tvMotionStatus.setOnClickListener {
-            if (tvMotionStatus.text == "Motion Detected: No") {
-                tvMotionStatus.text = "Motion Detected: Yes"
-            } else {
-                tvMotionStatus.text = "Motion Detected: No"
-            }
+        // サウンドONボタンの処理
+        btnSoundOn.setOnClickListener {
+            updateToggleButtons(isOn = true, btnSoundOn, btnSoundOff)
         }
 
-        // アラームのON/OFFを切り替える例（テスト用）
-        tvAlarmStatus.setOnClickListener {
-            if (tvAlarmStatus.text == "Alarm: OFF") {
-                tvAlarmStatus.text = "Alarm: ON"
-            } else {
-                tvAlarmStatus.text = "Alarm: OFF"
-            }
+        // サウンドOFFボタンの処理
+        btnSoundOff.setOnClickListener {
+            updateToggleButtons(isOn = false, btnSoundOn, btnSoundOff)
+        }
+
+
+        // アラームONボタンの処理
+        btnAlarmOn.setOnClickListener {
+            updateToggleButtons(isOn = true, btnAlarmOn, btnAlarmOff)
+        }
+
+        // アラームOFFボタンの処理
+        btnAlarmOff.setOnClickListener {
+            updateToggleButtons(isOn = false, btnAlarmOn, btnAlarmOff)
         }
     }
+
+    // ボタンの状態を更新する共通関数
+    private fun updateToggleButtons(isOn: Boolean, btnOn: Button, btnOff: Button) {
+        if (isOn) {
+            btnOn.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
+            btnOn.setTextColor(ContextCompat.getColor(this, R.color.white))
+            btnOff.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+            btnOff.setTextColor(ContextCompat.getColor(this, R.color.white))
+        } else {
+            btnOn.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+            btnOn.setTextColor(ContextCompat.getColor(this, R.color.white))
+            btnOff.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
+            btnOff.setTextColor(ContextCompat.getColor(this, R.color.white))
+        }
+    }
+
 }
