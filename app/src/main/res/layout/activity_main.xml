@@ -110,7 +110,7 @@
         android:id="@+id/btnWifiConnect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connect to Wi-Fi"
+        android:text="Connect to Mongo DB"
         android:backgroundTint="@color/teal_700"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
