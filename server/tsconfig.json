@@ -32,6 +32,6 @@
     "resolvePackageJsonExports": true,               /* package.json の `exports` を使用してモジュールを解決 */
     "resolvePackageJsonImports": true                /* package.json の `imports` を使用してモジュールを解決 */
   },
-  "include": ["src"],                                /* TypeScript のコンパイル対象ディレクトリ */
+  "include": ["src/**/*.ts"],                              /* TypeScript のコンパイル対象ディレクトリ */
   "exclude": ["node_modules", "dist"]               /* コンパイル対象から除外するフォルダ */
 }
