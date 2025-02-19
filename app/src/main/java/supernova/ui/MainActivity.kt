@@ -1,5 +1,6 @@
 package supernova.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -62,6 +63,15 @@ class MainActivity : AppCompatActivity() {
         btnFireOff.setOnClickListener { updateToggleButtons(false, btnFireOn, btnFireOff) }
         btnAlarmOn.setOnClickListener { updateToggleButtons(true, btnAlarmOn, btnAlarmOff) }
         btnAlarmOff.setOnClickListener { updateToggleButtons(false, btnAlarmOn, btnAlarmOff) }
+
+        // 追加したボタンを取得
+        val btnGoToSecond: Button = findViewById(R.id.btnGoToSecond)
+
+        // ボタンを押すと SecondActivity に遷移
+        btnGoToSecond.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
 
         // センサーデータの定期取得開始
         startFetchingSensorData()
