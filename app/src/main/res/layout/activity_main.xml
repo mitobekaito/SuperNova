@@ -179,26 +179,21 @@
                 <!-- ONボタン -->
                 <Button
                     android:id="@+id/btnSoundOn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ON"
-                    android:minWidth="80dp"
                     android:backgroundTint="@color/yellow"
                     android:textColor="@color/white"/>
 
                 <!-- OFFボタン -->
                 <Button
                     android:id="@+id/btnSoundOff"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OFF"
-                    android:minWidth="80dp"
                     android:backgroundTint="@color/gray"
                     android:textColor="@color/white"
                     android:layout_marginStart="8dp"/>
-
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -339,23 +334,5 @@
             android:text="LED OFF"
             android:textColor="@color/white"
             android:layout_margin="4dp"/>
-        <Button
-            android:id="@+id/btnFetchData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fetch Sensor Data"
-            android:backgroundTint="@color/blue"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnSendData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Send Sensor Data"
-            android:backgroundTint="@color/green"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
     </LinearLayout>
 </LinearLayout>
