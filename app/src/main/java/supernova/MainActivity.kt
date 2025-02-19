@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         val btnLedOff: Button = findViewById(R.id.btnLedOff)
 
         // ON/OFFボタン
+        val btnLEDOn: Button = findViewById(R.id.btnLEDOn)
+        val btnLEDOff: Button = findViewById(R.id.btnLEDOff)
+
+        // ON/OFFボタン
         val btnSoundOn: Button = findViewById(R.id.btnSoundOn)
         val btnSoundOff: Button = findViewById(R.id.btnSoundOff)
 
@@ -31,8 +35,9 @@ class MainActivity : AppCompatActivity() {
         val btnAlarmOff: Button = findViewById(R.id.btnAlarmOff)
 
         // **初期状態を設定**
+        updateToggleButtons(isOn = true, btnLEDOn, btnLEDOff) // LED: ON
         updateToggleButtons(isOn = true, btnSoundOn, btnSoundOff) // Motion Detected: ON
-        updateToggleButtons(isOn = true, btnAlarmOn, btnAlarmOff) // Alarm: OFF
+        updateToggleButtons(isOn = true, btnAlarmOn, btnAlarmOff) // Alarm: ON
 
         // 温度の初期表示を "--°C" のみに設定
         tvTemperature.text = "--°C"
@@ -66,6 +71,16 @@ class MainActivity : AppCompatActivity() {
             tvMoving.text = "LED: OFF"
         }
 
+
+        // LED ONボタンの処理
+        btnLEDOn.setOnClickListener {
+            updateToggleButtons(isOn = true, btnLEDOn, btnLEDOff)
+        }
+
+        // LED OFFボタンの処理
+        btnLEDOff.setOnClickListener {
+            updateToggleButtons(isOn = false, btnLEDOn, btnLEDOff)
+        }
 
         // Motion Detected ONボタンの処理
         btnSoundOn.setOnClickListener {
