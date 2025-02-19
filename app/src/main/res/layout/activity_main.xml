@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="@color/yellow">
+    android:background="@color/light_blue">
 
     <!-- ストリーク情報エリア -->
     <androidx.cardview.widget.CardView
@@ -41,7 +41,45 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- センサーデータ表示エリア -->
+    <!-- 温度・湿度表示エリア -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- 温度表示 -->
+            <TextView
+                android:id="@+id/tvTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--°C"
+                android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+            <!-- 湿度表示 -->
+            <TextView
+                android:id="@+id/tvHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity: --%"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 動作状態表示エリア -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,23 +96,119 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tvSensorData"
+                android:id="@+id/tvMoving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature: --°C\nHumidity: --%\nMoving: warning"
+                android:text="Moving: warning"
                 android:textSize="18sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+
     <Button
         android:id="@+id/btnWifiConnect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connect to Wi-Fi"
+        android:text="Connect to Mongo DB"
         android:backgroundTint="@color/teal_700"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
+
+
+    <!--  Motion DetectedのON/OFFボタンエリア  -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/yellow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- サウンドのラベル -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motion Detected"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- ONボタン -->
+            <Button
+                android:id="@+id/btnSoundOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/white"/>
+
+            <!-- OFFボタン -->
+            <Button
+                android:id="@+id/btnSoundOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- アラームのON/OFFボタンエリア -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/yellow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- アラームのラベル -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm                   "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- ONボタン -->
+            <Button
+                android:id="@+id/btnAlarmOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/white"/>
+
+            <!-- OFFボタン -->
+            <Button
+                android:id="@+id/btnAlarmOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:backgroundTint="@color/gray"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
     <!-- LED 制御ボタン -->
