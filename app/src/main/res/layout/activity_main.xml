@@ -202,6 +202,67 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+
+    <!--  Fire のON/OFFボタンエリア  -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:background="@color/yellow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Fireのラベル -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Fire Detected"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end">
+
+                <!-- ONボタン -->
+                <Button
+                    android:id="@+id/btnFireOn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="ON"
+                    android:minWidth="80dp"
+                    android:backgroundTint="@color/yellow"
+                    android:textColor="@color/white"/>
+
+                <!-- OFFボタン -->
+                <Button
+                    android:id="@+id/btnFireOff"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="OFF"
+                    android:minWidth="80dp"
+                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
     <!-- アラームのON/OFFボタンエリア -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
