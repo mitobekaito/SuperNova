@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         val btnAlarmOn: Button = findViewById(R.id.btnAlarmOn)
         val btnAlarmOff: Button = findViewById(R.id.btnAlarmOff)
 
+        // **初期状態を設定**
+        updateToggleButtons(isOn = true, btnSoundOn, btnSoundOff) // Motion Detected: ON
+        updateToggleButtons(isOn = true, btnAlarmOn, btnAlarmOff) // Alarm: OFF
+
         // 温度の初期表示を "--°C" のみに設定
         tvTemperature.text = "--°C"
 
@@ -37,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         tvHumidity.text = "Humidity: --%"
 
 
-        // Wi-Fi接続処理
+        // Mongo DB接続処理
         btnWifiConnect.setOnClickListener {
-            tvMoving.text = "Wi-Fi: Connecting..."
+            tvMoving.text = "Mongo DB: Connecting..."
         }
 
 
@@ -63,12 +67,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        // サウンドONボタンの処理
+        // Motion Detected ONボタンの処理
         btnSoundOn.setOnClickListener {
             updateToggleButtons(isOn = true, btnSoundOn, btnSoundOff)
         }
 
-        // サウンドOFFボタンの処理
+        // Motion Detected OFFボタンの処理
         btnSoundOff.setOnClickListener {
             updateToggleButtons(isOn = false, btnSoundOn, btnSoundOff)
         }
@@ -88,16 +92,21 @@ class MainActivity : AppCompatActivity() {
     // ボタンの状態を更新する共通関数
     private fun updateToggleButtons(isOn: Boolean, btnOn: Button, btnOff: Button) {
         if (isOn) {
-            btnOn.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
-            btnOn.setTextColor(ContextCompat.getColor(this, R.color.white))
+            // 背景の黄色を少し暗くする
+            btnOn.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_yellow))
+            btnOn.setTextColor(ContextCompat.getColor(this, R.color.black)) // ON時の文字色を黒に
+
             btnOff.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
             btnOff.setTextColor(ContextCompat.getColor(this, R.color.white))
         } else {
             btnOn.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
             btnOn.setTextColor(ContextCompat.getColor(this, R.color.white))
-            btnOff.setBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
-            btnOff.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+            // 背景の黄色を少し暗くする
+            btnOff.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_yellow))
+            btnOff.setTextColor(ContextCompat.getColor(this, R.color.black)) // OFF時の文字色を黒に
         }
     }
+
 
 }
