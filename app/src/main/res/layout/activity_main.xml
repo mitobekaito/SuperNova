@@ -179,21 +179,26 @@
                 <!-- ONボタン -->
                 <Button
                     android:id="@+id/btnSoundOn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="ON"
+                    android:minWidth="80dp"
                     android:backgroundTint="@color/yellow"
                     android:textColor="@color/white"/>
 
                 <!-- OFFボタン -->
                 <Button
                     android:id="@+id/btnSoundOff"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="OFF"
+                    android:minWidth="80dp"
                     android:backgroundTint="@color/gray"
                     android:textColor="@color/white"
                     android:layout_marginStart="8dp"/>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -303,35 +308,6 @@
             android:layout_height="wrap_content"
             android:text="Green"
             android:backgroundTint="@color/green"
-            android:textColor="@color/white"
-            android:layout_margin="4dp"/>
-    </LinearLayout>
-
-    <!-- LED ON/OFF ボタン -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="8dp">
-
-        <Button
-            android:id="@+id/btnLedOn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:text="LED ON"
-            android:textColor="@color/white"
-            android:layout_margin="4dp"/>
-
-        <Button
-            android:id="@+id/btnLedOff"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:text="LED OFF"
             android:textColor="@color/white"
             android:layout_margin="4dp"/>
     </LinearLayout>

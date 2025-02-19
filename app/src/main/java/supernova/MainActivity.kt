@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         val btnRed: Button = findViewById(R.id.btnRed)
         val btnBlue: Button = findViewById(R.id.btnBlue)
         val btnGreen: Button = findViewById(R.id.btnGreen)
-        val btnLedOn: Button = findViewById(R.id.btnLedOn)
-        val btnLedOff: Button = findViewById(R.id.btnLedOff)
 
         // ON/OFFボタン
         val btnLEDOn: Button = findViewById(R.id.btnLEDOn)
@@ -61,14 +59,6 @@ class MainActivity : AppCompatActivity() {
         }
         btnGreen.setOnClickListener {
             tvMoving.text = "LED Color: Green"
-        }
-
-        // LEDのON/OFF
-        btnLedOn.setOnClickListener {
-            tvMoving.text = "LED: ON"
-        }
-        btnLedOff.setOnClickListener {
-            tvMoving.text = "LED: OFF"
         }
 
 
