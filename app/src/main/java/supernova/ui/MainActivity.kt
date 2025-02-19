@@ -29,11 +29,8 @@ class MainActivity : AppCompatActivity() {
         tvMoving = findViewById(R.id.tvMoving)
 
         val btnWifiConnect: Button = findViewById(R.id.btnWifiConnect)
-        val btnRed: Button = findViewById(R.id.btnRed)
-        val btnBlue: Button = findViewById(R.id.btnBlue)
-        val btnGreen: Button = findViewById(R.id.btnGreen)
-        val btnLEDOn: Button = findViewById(R.id.btnLedOn)
-        val btnLEDOff: Button = findViewById(R.id.btnLedOff)
+        val btnLEDOn: Button = findViewById(R.id.btnLEDOn)
+        val btnLEDOff: Button = findViewById(R.id.btnLEDOff)
         val btnSoundOn: Button = findViewById(R.id.btnSoundOn)
         val btnSoundOff: Button = findViewById(R.id.btnSoundOff)
         val btnAlarmOn: Button = findViewById(R.id.btnAlarmOn)
@@ -52,11 +49,6 @@ class MainActivity : AppCompatActivity() {
         btnWifiConnect.setOnClickListener {
             tvMoving.text = "Mongo DB: Connecting..."
         }
-
-        // LED制御ボタン
-        btnRed.setOnClickListener { tvMoving.text = "LED Color: Red" }
-        btnBlue.setOnClickListener { tvMoving.text = "LED Color: Blue" }
-        btnGreen.setOnClickListener { tvMoving.text = "LED Color: Green" }
 
         // ON/OFFボタン
         btnLEDOn.setOnClickListener { updateToggleButtons(true, btnLEDOn, btnLEDOff) }
