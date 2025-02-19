@@ -33,12 +33,15 @@ class MainActivity : AppCompatActivity() {
         val btnLEDOff: Button = findViewById(R.id.btnLEDOff)
         val btnSoundOn: Button = findViewById(R.id.btnSoundOn)
         val btnSoundOff: Button = findViewById(R.id.btnSoundOff)
+        val btnFireOn: Button = findViewById(R.id.btnFireOn)
+        val btnFireOff: Button = findViewById(R.id.btnFireOff)
         val btnAlarmOn: Button = findViewById(R.id.btnAlarmOn)
         val btnAlarmOff: Button = findViewById(R.id.btnAlarmOff)
 
         // 初期状態を設定
         updateToggleButtons(true, btnLEDOn, btnLEDOff)
         updateToggleButtons(true, btnSoundOn, btnSoundOff)
+        updateToggleButtons(true, btnFireOn, btnFireOff)
         updateToggleButtons(true, btnAlarmOn, btnAlarmOff)
 
         // 温度・湿度の初期値
@@ -55,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         btnLEDOff.setOnClickListener { updateToggleButtons(false, btnLEDOn, btnLEDOff) }
         btnSoundOn.setOnClickListener { updateToggleButtons(true, btnSoundOn, btnSoundOff) }
         btnSoundOff.setOnClickListener { updateToggleButtons(false, btnSoundOn, btnSoundOff) }
+        btnFireOn.setOnClickListener { updateToggleButtons(true, btnFireOn, btnFireOff) }
+        btnFireOff.setOnClickListener { updateToggleButtons(false, btnFireOn, btnFireOff) }
         btnAlarmOn.setOnClickListener { updateToggleButtons(true, btnAlarmOn, btnAlarmOff) }
         btnAlarmOff.setOnClickListener { updateToggleButtons(false, btnAlarmOn, btnAlarmOff) }
 
