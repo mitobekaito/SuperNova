@@ -28,6 +28,7 @@ mongoose.connect(MONGO_URI)
 const sensorSchema = new mongoose.Schema({
     timestamp: { type: String, required: true },
     temperature: { type: Number, required: true },
+    humidity: { type: Number, required: true },
     motion_detected: { type: Boolean, required: true }
 }, { collection: 'arduino_data' });
 const SensorData = mongoose.model("SensorData", sensorSchema);
@@ -46,14 +47,14 @@ app.get("/sensor-data", async (req: Request, res: Response): Promise<void> => {
 // 📌 `POST /sensor-data`
 app.post("/sensor-data", async (req: Request, res: Response): Promise<void> => {
     try {
-        const { timestamp, temperature, motion_detected } = req.body;
+        const { timestamp, temperature, humidity, motion_detected } = req.body;
 
-        if (!timestamp || temperature === undefined || motion_detected === undefined) {
+        if (!timestamp || temperature === undefined || humidity === undefined || motion_detected === undefined) {
             res.status(400).json({ message: "❌ 必要なデータが不足しています" });
             return;
         }
 
-        const newData = new SensorData({ timestamp, temperature, motion_detected });
+        const newData = new SensorData({ timestamp, temperature, humidity, motion_detected });
         await newData.save();
         res.status(201).json({ message: "✅ データが正常に保存されました" });
     } catch (error) {
