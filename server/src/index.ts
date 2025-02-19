@@ -1,61 +1,73 @@
-import express from "express";
+import path from "path";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-dotenv.config();
+// ✅  .env を読み込む
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
+console.log("MongoDB URI:", process.env.MONGO_URI); // ✅ デバッグ用に出力
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/supernova";
+const PORT = parseInt(process.env.PORT || "5000", 10);
+const MONGO_URI = process.env.MONGO_URI || "";
 
-// Connect to MongoDB
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-} as mongoose.ConnectOptions)
-    .then(() => console.log("MongoDB Connection Successful"))
-    .catch((err) => console.error("MongoDB Connection Error:", err));
+// ✅ MongoDB に接続
+mongoose.connect(MONGO_URI)
+    .then(() => console.log("✅ MongoDB（supernova）接続成功"))
+    .catch((err) => {
+        console.error("❌ MongoDB 接続エラー:", err);
+        process.exit(1);
+    });
 
 // 🌟 Sensor Data Schema
 const sensorSchema = new mongoose.Schema({
-    timestamp: String,
-    temperature: Number,
-    motion_detected: Boolean
-});
+    timestamp: { type: String, required: true },
+    temperature: { type: Number, required: true },
+    motion_detected: { type: Boolean, required: true }
+}, { collection: 'arduino_data' });
 const SensorData = mongoose.model("SensorData", sensorSchema);
 
-// 📌 GET: Retrieve sensor data
-app.get("/sensor-data", async (req, res) => {
+// 📌 `GET /sensor-data`
+app.get("/sensor-data", async (req: Request, res: Response): Promise<void> => {
     try {
-        const data = await SensorData.find().sort({ timestamp: -1 }).limit(10); // Get latest 10 entries
+        const data = await SensorData.find().sort({ timestamp: -1 }).limit(10);
         res.json(data);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching data", error });
+        console.error("❌ データ取得エラー:", error);
+        res.status(500).json({ message: "データ取得エラー", error });
     }
 });
 
-// 📌 POST: Save new sensor data
-app.post("/sensor-data", async (req, res) => {
+// 📌 `POST /sensor-data`
+app.post("/sensor-data", async (req: Request, res: Response): Promise<void> => {
     try {
         const { timestamp, temperature, motion_detected } = req.body;
+
+        if (!timestamp || temperature === undefined || motion_detected === undefined) {
+            res.status(400).json({ message: "❌ 必要なデータが不足しています" });
+            return;
+        }
+
         const newData = new SensorData({ timestamp, temperature, motion_detected });
         await newData.save();
-        res.status(201).json({ message: "Data saved successfully" });
+        res.status(201).json({ message: "✅ データが正常に保存されました" });
     } catch (error) {
-        res.status(500).json({ message: "Error saving data", error });
+        console.error("❌ データ保存エラー:", error);
+        res.status(500).json({ message: "データ保存エラー", error });
     }
 });
 
-// ✅ Root endpoint
-app.get("/", (req, res) => {
-    res.send("TypeScript-based Node.js server is running!");
+// ✅ ルートエンドポイント
+app.get("/", (req: Request, res: Response): void => {
+    res.send("✅ TypeScript ベースの Node.js サーバーが動作中！");
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// 🚀 サーバーを起動
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`✅ サーバーがポート ${PORT} で起動しました`);
 });
