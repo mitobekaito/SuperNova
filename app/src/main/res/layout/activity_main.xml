@@ -311,4 +311,51 @@
             android:textColor="@color/white"
             android:layout_margin="4dp"/>
     </LinearLayout>
+
+    <!-- LED ON/OFF ボタン -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/btnLedOn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:text="LED ON"
+            android:textColor="@color/white"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnLedOff"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="LED OFF"
+            android:textColor="@color/white"
+            android:layout_margin="4dp"/>
+        <Button
+            android:id="@+id/btnFetchData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fetch Sensor Data"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnSendData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Sensor Data"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
 </LinearLayout>
