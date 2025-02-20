@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnAlarmOff: Button
     private lateinit var btnGoToSecond: Button // 🚀 SecondActivity へ遷移するボタンを追加
 
+    private var isMotionDetectionEnabled = false  // ✅ Motion Detected の ON/OFF 状態を管理
     private var isAlertShown = false // 警告画面の連続表示防止フラグ
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +78,12 @@ class MainActivity : AppCompatActivity() {
         btnAlarmOn = findViewById(R.id.btnAlarmOn)
         btnAlarmOff = findViewById(R.id.btnAlarmOff)
 
+        // ✅ `btnSoundOn` , 'btnFireOn' の初期状態を ON に設定
+        btnSoundOn.tag = "ON"
+        btnSoundOff.tag = "OFF"
+        btnFireOn.tag = "ON"
+        btnFireOff.tag = "OFF"
+
         // 🚀 SecondActivity に遷移するボタンを追加
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
@@ -96,15 +103,44 @@ class MainActivity : AppCompatActivity() {
             btnFireOn, btnFireOff,
             btnAlarmOn, btnAlarmOff
         )
+
+        // ✅ Motion Detected ボタンのリスナー設定（追加）
+        btnSoundOn.setOnClickListener {
+            isMotionDetectionEnabled = true  // ✅ ON にする
+            updateMotionButtonState()       // ✅ ボタンの見た目を更新
+        }
+        btnSoundOff.setOnClickListener {
+            isMotionDetectionEnabled = false // ✅ OFF にする
+            updateMotionButtonState()        // ✅ ボタンの見た目を更新
+        }
+    }
+
+    // ✅ Motion Detected ボタンの UI 更新（追加）
+    private fun updateMotionButtonState() {
+        if (isMotionDetectionEnabled) {
+            btnSoundOn.setBackgroundColor(resources.getColor(R.color.dark_yellow))
+            btnSoundOn.setTextColor(resources.getColor(R.color.black))
+            btnSoundOff.setBackgroundColor(resources.getColor(R.color.gray))
+            btnSoundOff.setTextColor(resources.getColor(R.color.white))
+        } else {
+            btnSoundOn.setBackgroundColor(resources.getColor(R.color.gray))
+            btnSoundOn.setTextColor(resources.getColor(R.color.white))
+            btnSoundOff.setBackgroundColor(resources.getColor(R.color.dark_yellow))
+            btnSoundOff.setTextColor(resources.getColor(R.color.black))
+        }
     }
 
     // ✅ センサーデータの処理
-// ✅ センサーデータの処理
     private fun handleSensorData(motionDetected: Boolean, flameDetected: Boolean) {
         println("🚨 モーション検知: $motionDetected, 火災検知: $flameDetected")
-        if (motionDetected) {
+
+        // ✅ Motion Detected / Fire Detected ボタンの ON 状態を判定
+        val isMotionAlertOn = btnSoundOn.tag == "ON"
+        val isFireAlertOn = btnFireOn.tag == "ON"
+
+        if (motionDetected && isMotionAlertOn) {
             handleMotionAlert()
-        } else if (flameDetected) {
+        } else if (flameDetected && isFireAlertOn) {
             handleFlameAlert()
         } else {
             isAlertShown = false // 🚀 モーションも火災も検知されなくなったらリセット

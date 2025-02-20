@@ -10,7 +10,7 @@ import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 // Node.js サーバーのベースURL
-private const val BASE_URL = "http://10.0.2.2:5000/"
+private const val BASE_URL = "http://172.16.15.18:5000/"
 
 // ✅ キャッシュを無効化する OkHttpClient を作成
 private val client = OkHttpClient.Builder()
