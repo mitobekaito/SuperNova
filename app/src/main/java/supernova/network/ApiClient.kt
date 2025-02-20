@@ -9,10 +9,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
-// Node.js サーバーのベースURL
+// ✅ Node.js サーバーのベースURL
 private const val BASE_URL = "http://10.0.2.2:5000/"
 
-// ✅ キャッシュを無効化する OkHttpClient を作成
+// ✅ OkHttpClient（キャッシュ無効 & ログ出力）
 private val client = OkHttpClient.Builder()
     .addInterceptor(HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY // API のリクエストとレスポンスのログを出力
@@ -29,7 +29,7 @@ private val client = OkHttpClient.Builder()
     }
     .build()
 
-// ✅ Retrofit クライアント
+// ✅ Retrofit クライアント（API インスタンスを作成）
 object ApiClient {
     val instance: ApiService by lazy {
         Retrofit.Builder()
@@ -41,16 +41,25 @@ object ApiClient {
     }
 }
 
-// ✅ API 定義
+// ✅ API インターフェース
 interface ApiService {
-    @GET("sensor-data")
-    suspend fun getSensorData(): List<SensorData> // 最新のセンサーデータを取得
 
-    @POST("sensor-data")
-    suspend fun postSensorData(@Body data: SensorData): ResponseMessage // センサーデータを送信
+    // 📌 センサーデータを取得
+    @GET("api/sensor-data")
+    suspend fun getSensorData(): List<SensorData>
+
+    // 📌 センサーデータを送信
+    @POST("api/sensor-data")
+    suspend fun postSensorData(@Body data: SensorData): ResponseMessage
+
+    // 📌 LED コマンドを送信
+    @POST("api/led-command")
+    suspend fun sendLedCommand(@Body command: LedCommand): ResponseMessage
 }
 
-// データクラスの定義
+// ✅ データクラスの定義
+
+// 📌 センサーデータ
 data class SensorData(
     val temperature: Double,
     val humidity: Double,
@@ -59,6 +68,16 @@ data class SensorData(
     val timestamp: String
 )
 
+// 📌 通常のAPIレスポンスメッセージ
 data class ResponseMessage(
+    val message: String
+)
+
+// 📌 LED コマンド送信用
+data class LedCommand(
+    val led_command: String
+)
+
+data class LedCommandResponse(
     val message: String
 )
