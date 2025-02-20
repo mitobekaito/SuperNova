@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTemperature: TextView
     private lateinit var tvHumidity: TextView
     private lateinit var tvMoving: TextView
+    private lateinit var btnMongoDBConnect: Button
     private lateinit var btnLEDOn: Button
     private lateinit var btnLEDOff: Button
     private lateinit var btnSoundOn: Button
@@ -54,6 +55,11 @@ class MainActivity : AppCompatActivity() {
             btnAlarmOn, btnAlarmOff
         )
 
+        // ✅ Mongo DB 接続ボタンの処理修正
+        btnMongoDBConnect.setOnClickListener {
+            tvMoving.text = "Mongo DB: Connecting..."
+        }
+
     }
 
     // ✅ UIの初期化
@@ -61,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvMoving)
+        btnMongoDBConnect = findViewById(R.id.btnMongoDBConnect)
 
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
