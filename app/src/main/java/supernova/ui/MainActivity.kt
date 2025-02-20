@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLEDOff: Button
     private lateinit var btnSoundOn: Button
     private lateinit var btnSoundOff: Button
+    private lateinit var btnFireOn: Button
+    private lateinit var btnFireOff: Button
     private lateinit var btnAlarmOn: Button
     private lateinit var btnAlarmOff: Button
     private lateinit var btnGoToSecond: Button // 🚀 SecondActivity へ遷移するボタンを追加
@@ -42,6 +44,16 @@ class MainActivity : AppCompatActivity() {
         SensorDataManager.startFetchingSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected ->
             handleSensorData(motionDetected)
         }
+
+        // ✅ ボタンの初期状態を設定
+        ButtonManager.setupButtonListeners(
+            this,
+            btnLEDOn, btnLEDOff,
+            btnSoundOn, btnSoundOff,
+            btnFireOn, btnFireOff,
+            btnAlarmOn, btnAlarmOff
+        )
+
     }
 
     // ✅ UIの初期化
@@ -54,6 +66,8 @@ class MainActivity : AppCompatActivity() {
         btnLEDOff = findViewById(R.id.btnLEDOff)
         btnSoundOn = findViewById(R.id.btnSoundOn)
         btnSoundOff = findViewById(R.id.btnSoundOff)
+        btnFireOn = findViewById(R.id.btnFireOn)
+        btnFireOff = findViewById(R.id.btnFireOff)
         btnAlarmOn = findViewById(R.id.btnAlarmOn)
         btnAlarmOff = findViewById(R.id.btnAlarmOff)
 
@@ -73,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             this,
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
+            btnFireOn, btnFireOff,
             btnAlarmOn, btnAlarmOff
         )
     }

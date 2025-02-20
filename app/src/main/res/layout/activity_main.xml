@@ -124,8 +124,8 @@
                     android:layout_height="wrap_content"
                     android:text="ON"
                     android:minWidth="80dp"
-                    android:backgroundTint="@color/yellow"
-                    android:textColor="@color/white"/>
+                    android:backgroundTint="@color/dark_yellow"
+                    android:textColor="@color/black"/>
 
                 <!-- OFFボタン -->
                 <Button
@@ -184,8 +184,8 @@
                     android:layout_height="wrap_content"
                     android:text="ON"
                     android:minWidth="80dp"
-                    android:backgroundTint="@color/yellow"
-                    android:textColor="@color/white"/>
+                    android:backgroundTint="@color/dark_yellow"
+                    android:textColor="@color/black"/>
 
                 <!-- OFFボタン -->
                 <Button
@@ -244,8 +244,8 @@
                     android:layout_height="wrap_content"
                     android:text="ON"
                     android:minWidth="80dp"
-                    android:backgroundTint="@color/yellow"
-                    android:textColor="@color/white"/>
+                    android:backgroundTint="@color/dark_yellow"
+                    android:textColor="@color/black"/>
 
                 <!-- OFFボタン -->
                 <Button
@@ -305,8 +305,8 @@
                     android:layout_height="wrap_content"
                     android:text="ON"
                     android:minWidth="80dp"
-                    android:backgroundTint="@color/yellow"
-                    android:textColor="@color/white"/>
+                    android:backgroundTint="@color/dark_yellow"
+                    android:textColor="@color/black"/>
 
                 <!-- OFFボタン -->
                 <Button
