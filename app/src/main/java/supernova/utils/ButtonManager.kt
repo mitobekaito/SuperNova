@@ -52,11 +52,20 @@ object ButtonManager {
             btnOn.setTextColor(textColorOn)
             btnOff.setBackgroundColor(offColor)
             btnOff.setTextColor(textColorOff)
+
+            // ✅ ON のときにタグを更新
+            btnOn.tag = "ON"
+            btnOff.tag = "OFF"
         } else {
             btnOn.setBackgroundColor(offColor)
             btnOn.setTextColor(textColorOff)
             btnOff.setBackgroundColor(onColor)
             btnOff.setTextColor(textColorOn)
+
+
+            // ✅ OFF のときにタグを更新
+            btnOn.tag = "OFF"
+            btnOff.tag = "ON"
         }
     }
 }
