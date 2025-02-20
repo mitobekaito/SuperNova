@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import supernova.utils.AlarmManager
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
 
@@ -37,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         setupButtonListeners()
 
         // ✅ アプリ起動時に一度最新データを取得
-        SensorDataManager.fetchLatestSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected ->
-            handleSensorData(motionDetected)
+        SensorDataManager.fetchLatestSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected, flameDetected ->
+            handleSensorData(motionDetected, flameDetected)
         }
 
         // ✅ 5秒ごとにセンサーデータを更新
-        SensorDataManager.startFetchingSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected ->
-            handleSensorData(motionDetected)
+        SensorDataManager.startFetchingSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected, flameDetected ->
+            handleSensorData(motionDetected, flameDetected)
         }
 
         // ✅ ボタンの初期状態を設定
@@ -100,19 +99,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ✅ センサーデータの処理
-    private fun handleSensorData(motionDetected: Boolean) {
+// ✅ センサーデータの処理
+    private fun handleSensorData(motionDetected: Boolean, flameDetected: Boolean) {
+        println("🚨 モーション検知: $motionDetected, 火災検知: $flameDetected")
         if (motionDetected) {
-            handleAlert()
+            handleMotionAlert()
+        } else if (flameDetected) {
+            handleFlameAlert()
         } else {
-            isAlertShown = false // 🚀 モーションが検知されなくなったらリセット
+            isAlertShown = false // 🚀 モーションも火災も検知されなくなったらリセット
         }
     }
 
-    // ✅ 警告画面と音の処理
-    private fun handleAlert() {
+
+    // ✅ モーション検知時のアラート処理
+    private fun handleMotionAlert() {
         if (!isAlertShown) {
             isAlertShown = true
-            startActivity(Intent(this, AlertActivity::class.java)) // 🚀 修正
+            startActivity(Intent(this, MotionAlertActivity::class.java)) // 🚀 モーション検知の画面へ
         }
     }
+
+    // ✅ 火災検知時のアラート処理
+    private fun handleFlameAlert() {
+        println("🔥 火災アラート画面を表示")
+        if (!isAlertShown) {
+            isAlertShown = true
+            startActivity(Intent(this, FlameAlertActivity::class.java)) // 🔥 火災検知の画面へ
+        }
+    }
+
 }

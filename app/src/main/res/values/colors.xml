@@ -15,5 +15,5 @@
     <color name="gray">#808080</color>
     <color name="light_blue">#BBDEFB</color>
     <color name="dark_yellow">#FFD700</color>
-
+    <color name="fire_red">#D32F2F</color> <!-- 🔥 火災アラート用の赤色 -->
 </resources>
