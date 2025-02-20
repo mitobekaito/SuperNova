@@ -48,6 +48,8 @@ dependencies {
     //  Retrofit の依存関係を追加
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     // Material Design
     implementation("com.google.android.material:material:1.9.0")

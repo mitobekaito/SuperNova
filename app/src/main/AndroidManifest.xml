@@ -29,12 +29,25 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ AlertActivity の定義 -->
+        <!-- ✅ MotionAlertActivity の定義 -->
         <activity
-            android:name=".AlertActivity"
+            android:name=".MotionAlertActivity"
             android:theme="@style/Theme.AppCompat.Dialog.Alert"
-            android:exported="false" />
-        <activity android:name=".SecondActivity"/>
+            android:exported="false"
+            android:enabled="true" />
+
+        <!-- ✅ SecondActivity の定義 -->
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false"
+            android:enabled="true" />
+
+        <!-- ✅ FlameAlertActivity の定義 -->
+        <activity
+            android:name=".FlameAlertActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            android:exported="false"
+            android:enabled="true" />
     </application>
 
 </manifest>

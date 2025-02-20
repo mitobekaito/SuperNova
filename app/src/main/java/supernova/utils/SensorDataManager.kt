@@ -1,5 +1,6 @@
 package supernova.utils
 
+import android.util.Log
 import android.widget.TextView
 import kotlinx.coroutines.*
 import supernova.ui.MainViewModel
@@ -12,23 +13,24 @@ object SensorDataManager {
         tvTemperature: TextView,
         tvHumidity: TextView,
         tvMoving: TextView,
-        onMotionDetected: (Boolean) -> Unit
+        onDataReceived: (motionDetected: Boolean, flameDetected: Boolean) -> Unit
     ) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
-                val latestData = viewModel.getLatestSensorData()
+                val latestData = withContext(Dispatchers.IO) { viewModel.getLatestSensorData() }
+
                 latestData?.let { data ->
-                    runOnUiThread {
-                        tvTemperature.text = "${data.temperature}°C"
-                        tvHumidity.text = "Humidity: ${data.humidity}%"
-                        tvMoving.text = "Motion: ${if (data.motion) "Detected" else "None"}"
-                        onMotionDetected(data.motion)
-                    }
+                    Log.d("SensorDataManager", "📩 最新データ: $data") // ✅ ログで確認
+
+                    tvTemperature.text = "${data.temperature}°C"
+                    tvHumidity.text = "Humidity: ${data.humidity}%"
+                    tvMoving.text = "Motion: ${if (data.motion) "Detected" else "None"}"
+
+                    onDataReceived(data.motion, data.flame)
                 }
             } catch (e: Exception) {
-                runOnUiThread {
-                    tvMoving.text = "データ取得エラー: ${e.message}"
-                }
+                tvMoving.text = "データ取得エラー: ${e.message}"
+                Log.e("SensorDataManager", "❌ データ取得エラー: ${e.message}")
             }
         }
     }
@@ -39,31 +41,28 @@ object SensorDataManager {
         tvTemperature: TextView,
         tvHumidity: TextView,
         tvMoving: TextView,
-        onMotionDetected: (Boolean) -> Unit
+        onDataReceived: (motionDetected: Boolean, flameDetected: Boolean) -> Unit
     ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            while (true) {
+        CoroutineScope(Dispatchers.Main).launch {
+            while (isActive) {
                 try {
                     val data = withContext(Dispatchers.IO) { viewModel.getLatestSensorData() }
+
                     data?.let {
-                        runOnUiThread {
-                            tvTemperature.text = "${it.temperature}°C"
-                            tvHumidity.text = "Humidity: ${it.humidity}%"
-                            tvMoving.text = "Motion: ${if (it.motion) "Detected" else "None"}"
-                            onMotionDetected(it.motion)
-                        }
+                        Log.d("SensorDataManager", "🔄 最新データ更新: $it") // ✅ デバッグログ
+
+                        tvTemperature.text = "${it.temperature}°C"
+                        tvHumidity.text = "Humidity: ${it.humidity}%"
+                        tvMoving.text = "Motion: ${if (it.motion) "Detected" else "None"}"
+
+                        onDataReceived(it.motion, it.flame)
                     }
                 } catch (e: Exception) {
-                    runOnUiThread {
-                        tvMoving.text = "データ取得エラー: ${e.message}"
-                    }
+                    tvMoving.text = "データ取得エラー: ${e.message}"
+                    Log.e("SensorDataManager", "❌ データ取得エラー: ${e.message}")
                 }
-                delay(5000) // 5秒待つ
+                delay(5000) // 5秒ごとに更新
             }
         }
-    }
-
-    private fun runOnUiThread(action: () -> Unit) {
-        CoroutineScope(Dispatchers.Main).launch { action() }
     }
 }

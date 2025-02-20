@@ -7,11 +7,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.AlarmManager
 
-class AlertActivity : AppCompatActivity() {
+class MotionAlertActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_alert)
+        setContentView(R.layout.activity_alert_motion)
 
         // ✅ AlarmManager を使用してアラーム音を再生
         AlarmManager.playAlarmSound(this)
