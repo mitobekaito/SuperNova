@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
-        tvMoving = findViewById(R.id.tvMoving)
+        tvMoving = findViewById(R.id.tvUpdated)
         btnMongoDBConnect = findViewById(R.id.btnMongoDBConnect)
 
         btnLEDOn = findViewById(R.id.btnLEDOn)
@@ -99,34 +99,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ✅ センサーデータの処理
-// ✅ センサーデータの処理
     private fun handleSensorData(motionDetected: Boolean, flameDetected: Boolean) {
         println("🚨 モーション検知: $motionDetected, 火災検知: $flameDetected")
+
+        // ✅ 最新データが前回のデータと異なる場合、アラートフラグをリセット
+        if (motionDetected || flameDetected) {
+            isAlertShown = false
+        }
+
+        // ✅ モーションまたは火災検知時のアラート処理
         if (motionDetected) {
             handleMotionAlert()
         } else if (flameDetected) {
             handleFlameAlert()
-        } else {
-            isAlertShown = false // 🚀 モーションも火災も検知されなくなったらリセット
         }
     }
-
 
     // ✅ モーション検知時のアラート処理
     private fun handleMotionAlert() {
         if (!isAlertShown) {
             isAlertShown = true
-            startActivity(Intent(this, MotionAlertActivity::class.java)) // 🚀 モーション検知の画面へ
+            println("🚀 モーションアラート画面を表示")
+            startActivity(Intent(this, MotionAlertActivity::class.java))
         }
     }
 
     // ✅ 火災検知時のアラート処理
     private fun handleFlameAlert() {
-        println("🔥 火災アラート画面を表示")
         if (!isAlertShown) {
             isAlertShown = true
-            startActivity(Intent(this, FlameAlertActivity::class.java)) // 🔥 火災検知の画面へ
+            println("🔥 火災アラート画面を表示")
+            startActivity(Intent(this, FlameAlertActivity::class.java))
         }
     }
+
 
 }

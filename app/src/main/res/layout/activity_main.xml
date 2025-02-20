@@ -72,10 +72,10 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tvMoving"
+                android:id="@+id/tvUpdated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moving: warning"
+                android:text="Updated: --"
                 android:textSize="18sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
