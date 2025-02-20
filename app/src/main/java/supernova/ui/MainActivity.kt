@@ -51,12 +51,61 @@ class MainActivity : AppCompatActivity() {
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvMoving)
 
+<<<<<<< HEAD
         btnLEDOn = findViewById(R.id.btnLedOn)
         btnLEDOff = findViewById(R.id.btnLedOff)
         btnSoundOn = findViewById(R.id.btnSoundOn)
         btnSoundOff = findViewById(R.id.btnSoundOff)
         btnAlarmOn = findViewById(R.id.btnAlarmOn)
         btnAlarmOff = findViewById(R.id.btnAlarmOff)
+=======
+        val btnWifiConnect: Button = findViewById(R.id.btnWifiConnect)
+        val btnLEDOn: Button = findViewById(R.id.btnLEDOn)
+        val btnLEDOff: Button = findViewById(R.id.btnLEDOff)
+        val btnSoundOn: Button = findViewById(R.id.btnSoundOn)
+        val btnSoundOff: Button = findViewById(R.id.btnSoundOff)
+        val btnFireOn: Button = findViewById(R.id.btnFireOn)
+        val btnFireOff: Button = findViewById(R.id.btnFireOff)
+        val btnAlarmOn: Button = findViewById(R.id.btnAlarmOn)
+        val btnAlarmOff: Button = findViewById(R.id.btnAlarmOff)
+
+        // 初期状態を設定
+        updateToggleButtons(true, btnLEDOn, btnLEDOff)
+        updateToggleButtons(true, btnSoundOn, btnSoundOff)
+        updateToggleButtons(true, btnFireOn, btnFireOff)
+        updateToggleButtons(true, btnAlarmOn, btnAlarmOff)
+
+        // 温度・湿度の初期値
+        tvTemperature.text = "--°C"
+        tvHumidity.text = "Humidity: --%"
+
+        // Mongo DB接続処理
+        btnWifiConnect.setOnClickListener {
+            tvMoving.text = "Mongo DB: Connecting..."
+        }
+
+        // ON/OFFボタン
+        btnLEDOn.setOnClickListener { updateToggleButtons(true, btnLEDOn, btnLEDOff) }
+        btnLEDOff.setOnClickListener { updateToggleButtons(false, btnLEDOn, btnLEDOff) }
+        btnSoundOn.setOnClickListener { updateToggleButtons(true, btnSoundOn, btnSoundOff) }
+        btnSoundOff.setOnClickListener { updateToggleButtons(false, btnSoundOn, btnSoundOff) }
+        btnFireOn.setOnClickListener { updateToggleButtons(true, btnFireOn, btnFireOff) }
+        btnFireOff.setOnClickListener { updateToggleButtons(false, btnFireOn, btnFireOff) }
+        btnAlarmOn.setOnClickListener { updateToggleButtons(true, btnAlarmOn, btnAlarmOff) }
+        btnAlarmOff.setOnClickListener { updateToggleButtons(false, btnAlarmOn, btnAlarmOff) }
+
+        // 追加したボタンを取得
+        val btnGoToSecond: Button = findViewById(R.id.btnGoToSecond)
+
+        // ボタンを押すと SecondActivity に遷移
+        btnGoToSecond.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+        // センサーデータの定期取得開始
+        startFetchingSensorData()
+>>>>>>> e2294227ea966b42a61a58bedc4deeefb7ef5809
     }
 
     // ✅ ボタンのリスナーを設定

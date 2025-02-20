@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <!-- ✅ AlertActivity の定義 -->
         <activity
@@ -35,6 +36,9 @@
             android:theme="@style/Theme.AppCompat.Dialog.Alert"
             android:exported="false" />
 
+=======
+        <activity android:name=".SecondActivity"/>
+>>>>>>> e2294227ea966b42a61a58bedc4deeefb7ef5809
     </application>
 
 </manifest>
