@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 // Node.js サーバーのベースURL
-private const val BASE_URL = "http://172.16.14.42:5000/"
+private const val BASE_URL = "http://172.16.14.226:5000/"
 
 // Retrofit クライアントの作成
 object ApiClient {
@@ -31,10 +31,11 @@ interface ApiService {
 
 // データクラスの定義
 data class SensorData(
-    val timestamp: String,
     val temperature: Double,
     val humidity: Double,
-    val motion_detected: Boolean
+    val motion: Boolean,
+    val flame: Boolean,
+    val timestamp: String
 )
 
 data class ResponseMessage(
