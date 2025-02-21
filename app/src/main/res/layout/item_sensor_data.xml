@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center">
+
+    <!-- タイムスタンプ -->
+    <TextView
+        android:id="@+id/tvTimestamp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="2024-01-01 12:00:00"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+
+    <!-- 温度 -->
+    <TextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="25.0°C"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+
+    <!-- 湿度 -->
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="60%"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+
+    <!-- 動作検知 -->
+    <TextView
+        android:id="@+id/tvMotion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Detected"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+
+    <!-- 火災検知 -->
+    <TextView
+        android:id="@+id/tvFlame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="None"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+</LinearLayout>
