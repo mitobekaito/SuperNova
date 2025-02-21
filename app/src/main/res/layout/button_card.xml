@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- LEDのON/OFFボタンカード -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="@color/supernovaCardBackground"
+        app:strokeColor="@color/supernovaAccent"
+        app:strokeWidth="2dp"
+        app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+    <!-- LEDのラベル -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/born"
+        android:gravity="center_vertical"
+        android:text="LED"
+        android:textColor="@color/supernovaAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+
+        <!-- ONボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLEDOn"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="ON"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- OFFボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLEDOff"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+</LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Motion DetectedのON/OFFボタンカード -->
+<com.google.android.material.card.MaterialCardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="4dp"
+app:cardCornerRadius="16dp"
+app:cardElevation="8dp"
+android:backgroundTint="@color/supernovaCardBackground"
+app:strokeColor="@color/supernovaAccent"
+app:strokeWidth="2dp"
+app:cardUseCompatPadding="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <!-- Motion Detectedのラベル -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/born"
+        android:gravity="center_vertical"
+        android:text="Motion Detected"
+        android:textColor="@color/supernovaAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+
+        <!-- ONボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSoundOn"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="ON"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- OFFボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSoundOff"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+    <!-- Fire DetectedのON/OFFボタンカード -->
+<com.google.android.material.card.MaterialCardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="4dp"
+app:cardCornerRadius="16dp"
+app:cardElevation="8dp"
+android:backgroundTint="@color/supernovaCardBackground"
+app:strokeColor="@color/supernovaAccent"
+app:strokeWidth="2dp"
+app:cardUseCompatPadding="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <!-- Fire Detectedのラベル -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/born"
+        android:gravity="center_vertical"
+        android:text="Fire Detected"
+        android:textColor="@color/supernovaAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+
+        <!-- ONボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFireOn"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="ON"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- OFFボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFireOff"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+    <!-- アラームのON/OFFボタンカード -->
+<com.google.android.material.card.MaterialCardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="4dp"
+app:cardCornerRadius="16dp"
+app:cardElevation="8dp"
+android:backgroundTint="@color/supernovaCardBackground"
+app:strokeColor="@color/supernovaAccent"
+app:strokeWidth="2dp"
+app:cardUseCompatPadding="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <!-- Alarm のラベル -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Alarm"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:textColor="@color/supernovaAccent"
+        android:fontFamily="@font/born"
+
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+
+        <!-- ONボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAlarmOn"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="ON"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- OFFボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAlarmOff"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>

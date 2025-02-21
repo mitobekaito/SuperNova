@@ -16,4 +16,13 @@
     <color name="light_blue">#BBDEFB</color>
     <color name="dark_yellow">#FFD700</color>
     <color name="fire_red">#D32F2F</color> <!-- 🔥 火災アラート用の赤色 -->
+
+    <!-- 背景色：やや暗めの紫(宇宙っぽいイメージ) -->
+    <color name="supernovaCardBackground">#EDE7F6</color>
+    <!-- アクセントカラー：ネオン系ピンクや水色など -->
+    <color name="supernovaAccent">#FFC107</color>
+
+    <!-- 少し暗めの背景用グラデーションに使う色など -->
+    <color name="supernovaPurpleDark">#311B92</color>
+    <color name="supernovaPurpleLight">#7E57C2</color>
 </resources>

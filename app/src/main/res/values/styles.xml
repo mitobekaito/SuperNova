@@ -1,0 +1,35 @@
+<resources>
+    <!-- テーマ自体は自由に -->
+    <style name="Theme.Supernova" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- テーマ全体の設定など -->
+        <item name="android:colorBackground">?android:colorBackground</item>
+        <item name="android:windowBackground">@drawable/supernova_mobile</item>
+        <!-- etc... -->
+    </style>
+
+    <!-- MaterialButton 用のスタイル -->
+    <style name="SupernovaButtonStyle" parent="Widget.MaterialComponents.Button">
+        <!-- 色設定 -->
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:backgroundTint">@color/supernovaAccent</item>
+        <!-- ボタンの角丸を少し大きめにする -->
+        <item name="cornerRadius">16dp</item>
+        <!-- 高さや文字スタイルの調整 -->
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/universe</item>
+        <!-- クリックエフェクト -->
+        <item name="android:foreground">@drawable/ripple_supernova</item>
+    </style>
+
+    <!-- MaterialCardView 用のスタイル (必要に応じて) -->
+    <style name="SupernovaCardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">8dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:backgroundTint">@color/supernovaCardBackground</item>
+        <item name="strokeColor">@color/supernovaAccent</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+</resources>
