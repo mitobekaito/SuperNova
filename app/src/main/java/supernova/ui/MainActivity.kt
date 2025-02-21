@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
+import supernova.utils.LedManager
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         setupUI()
@@ -46,14 +49,6 @@ class MainActivity : AppCompatActivity() {
             handleSensorData(motionDetected, flameDetected)
         }
 
-        // ✅ ボタンの初期状態を設定
-        ButtonManager.setupButtonListeners(
-            this,
-            btnLEDOn, btnLEDOff,
-            btnSoundOn, btnSoundOff,
-            btnFireOn, btnFireOff,
-            btnAlarmOn, btnAlarmOff
-        )
 
         // ✅ Mongo DB 接続ボタンの処理修正
         btnMongoDBConnect.setOnClickListener {
@@ -103,6 +98,17 @@ class MainActivity : AppCompatActivity() {
             btnFireOn, btnFireOff,
             btnAlarmOn, btnAlarmOff
         )
+        // ✅ LED ON ボタンのクリックリスナーを設定
+        btnLEDOn.setOnClickListener {
+            println("🟢 LED ON ボタンが押されました")
+            LedManager.sendLedCommand("ON") // ✅ LED ON コマンドを送信
+        }
+
+        // ✅ LED OFF ボタンのクリックリスナーを設定
+        btnLEDOff.setOnClickListener {
+            println("🔴 LED OFF ボタンが押されました")
+            LedManager.sendLedCommand("OFF") // ✅ LED OFF コマンドを送信
+        }
 
         // ✅ Motion Detected ボタンのリスナー設定（追加）
         btnSoundOn.setOnClickListener {
@@ -127,6 +133,7 @@ class MainActivity : AppCompatActivity() {
             btnSoundOn.setTextColor(resources.getColor(R.color.white))
             btnSoundOff.setBackgroundColor(resources.getColor(R.color.dark_yellow))
             btnSoundOff.setTextColor(resources.getColor(R.color.black))
+
         }
     }
 
