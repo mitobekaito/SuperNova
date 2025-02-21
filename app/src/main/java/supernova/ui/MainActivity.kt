@@ -9,12 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
 import supernova.utils.LedManager
+import supernova.utils.FlameManager
+import supernova.utils.MotionManager
 import supernova.ui.MotionAlertActivity
 import supernova.ui.FlameAlertActivity
 import android.util.Log
 import androidx.constraintlayout.widget.ConstraintSet.Motion
-import supernova.utils.FlameManager
-import supernova.utils.MotionManager
+
 
 class MainActivity : AppCompatActivity() {
 
