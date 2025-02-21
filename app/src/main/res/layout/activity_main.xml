@@ -1,331 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="@color/light_blue">
+    android:background="@drawable/supernova_mobile">
 
-    <Button
+    <!-- MongoDB 接続ボタン -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMongoDBConnect"
+        style="@style/SupernovaButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Connect to Mongo DB"
-        android:backgroundTint="@color/teal_700"
-        android:textColor="@color/white"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
 
-    <!-- 温度・湿度表示エリア -->
-    <androidx.cardview.widget.CardView
+    <!-- 温度・湿度カードの include -->
+    <include
+        layout="@layout/sensor_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- 温度表示 -->
-            <TextView
-                android:id="@+id/tvTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="--°C"
-                android:textSize="48sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-            <!-- 湿度表示 -->
-            <TextView
-                android:id="@+id/tvHumidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Humidity: --%"
-                android:textSize="24sp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- 動作状態表示エリア -->
-    <androidx.cardview.widget.CardView
+    <!-- 更新日時カードの include -->
+    <include
+        layout="@layout/updated_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tvUpdated"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Updated: --"
-                android:textSize="18sp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!--  LEDのON/OFFボタンエリア  -->
-    <androidx.cardview.widget.CardView
+    <!-- ボタン系カード(LED, Motion, Fire, Alarm)の include -->
+    <include
+        layout="@layout/button_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/yellow">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- LEDのラベル -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="LED"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end">
-
-                <!-- ONボタン -->
-                <Button
-                    android:id="@+id/btnLEDOn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="ON"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/dark_yellow"
-                    android:textColor="@color/black"/>
-
-                <!-- OFFボタン -->
-                <Button
-                    android:id="@+id/btnLEDOff"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="OFF"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <!--  Motion DetectedのON/OFFボタンエリア  -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/yellow">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- Motion Detected のラベル -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Motion Detected"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end">
-
-                <!-- ONボタン -->
-                <Button
-                    android:id="@+id/btnSoundOn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="ON"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/dark_yellow"
-                    android:textColor="@color/black"/>
-
-                <!-- OFFボタン -->
-                <Button
-                    android:id="@+id/btnSoundOff"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="OFF"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <!--  Fire のON/OFFボタンエリア  -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/yellow">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- Fireのラベル -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Fire Detected"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end">
-
-                <!-- ONボタン -->
-                <Button
-                    android:id="@+id/btnFireOn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="ON"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/dark_yellow"
-                    android:textColor="@color/black"/>
-
-                <!-- OFFボタン -->
-                <Button
-                    android:id="@+id/btnFireOff"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="OFF"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <!-- アラームのON/OFFボタンエリア -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:background="@color/yellow">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- アラームのラベル -->
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Alarm"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/black"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end">
-
-
-                <!-- ONボタン -->
-                <Button
-                    android:id="@+id/btnAlarmOn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="ON"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/dark_yellow"
-                    android:textColor="@color/black"/>
-
-                <!-- OFFボタン -->
-                <Button
-                    android:id="@+id/btnAlarmOff"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="OFF"
-                    android:minWidth="80dp"
-                    android:backgroundTint="@color/gray"
-                    android:textColor="@color/white"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <Button
+    <!-- チェックヒストリーボタン -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoToSecond"
+        style="@style/SupernovaButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check History"
-        android:layout_marginTop="20dp"/>
+        android:text="History"
+        android:layout_marginTop="8dp" />
+
 
 </LinearLayout>

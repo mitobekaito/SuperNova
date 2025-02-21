@@ -56,6 +56,15 @@ interface ApiService {
     // 📌 LED コマンドを送信
     @POST("api/led-command")
     suspend fun sendLedCommand(@Body command: LedCommand): ResponseMessage
+
+    // 📌 Motion コマンドを送信
+    @POST("api/motion-command")
+    suspend fun sendMotionCommand(@Body command: MotionCommand): ResponseMessage
+
+    // 📌 Flame コマンドを送信
+    @POST("api/flame-command")
+    suspend fun sendFlameCommand(@Body command: FlameCommand): ResponseMessage
+
 }
 
 // ✅ データクラスの定義
@@ -80,5 +89,23 @@ data class LedCommand(
 )
 
 data class LedCommandResponse(
+    val message: String
+)
+
+// 📌 Motion コマンド送信用
+data class MotionCommand(
+    val motion_command: String
+)
+
+data class MotionCommandResponse(
+    val message: String
+)
+
+// 📌 Flame コマンド送信用
+data class FlameCommand(
+    val flame_command: String
+)
+
+data class FlameCommandResponse(
     val message: String
 )
