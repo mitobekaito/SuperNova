@@ -9,7 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
 import supernova.utils.LedManager
+import supernova.ui.MotionAlertActivity
+import supernova.ui.FlameAlertActivity
 import android.util.Log
+import androidx.constraintlayout.widget.ConstraintSet.Motion
+import supernova.utils.FlameManager
+import supernova.utils.MotionManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -98,6 +103,18 @@ class MainActivity : AppCompatActivity() {
             btnFireOn, btnFireOff,
             btnAlarmOn, btnAlarmOff
         )
+
+        // ✅ Motion Detected ボタンのリスナー設定（追加）
+        btnSoundOn.setOnClickListener {
+            isMotionDetectionEnabled = true  // ✅ ON にする
+            updateMotionButtonState()       // ✅ ボタンの見た目を更新
+        }
+        btnSoundOff.setOnClickListener {
+            isMotionDetectionEnabled = false // ✅ OFF にする
+            updateMotionButtonState()        // ✅ ボタンの見た目を更新
+        }
+
+
         // ✅ LED ON ボタンのクリックリスナーを設定
         btnLEDOn.setOnClickListener {
             println("🟢 LED ON ボタンが押されました")
@@ -110,14 +127,28 @@ class MainActivity : AppCompatActivity() {
             LedManager.sendLedCommand("OFF") // ✅ LED OFF コマンドを送信
         }
 
-        // ✅ Motion Detected ボタンのリスナー設定（追加）
+        // ✅ Motion ON ボタンのクリックリスナーを設定
         btnSoundOn.setOnClickListener {
-            isMotionDetectionEnabled = true  // ✅ ON にする
-            updateMotionButtonState()       // ✅ ボタンの見た目を更新
+            println("🟢 Motion ON ボタンが押されました")
+            MotionManager.sendMotionCommand("ON") // ✅ Motion ON コマンドを送信
         }
+
+        // ✅ Motion OFF ボタンのクリックリスナーを設定
         btnSoundOff.setOnClickListener {
-            isMotionDetectionEnabled = false // ✅ OFF にする
-            updateMotionButtonState()        // ✅ ボタンの見た目を更新
+            println("🔴 Motion OFF ボタンが押されました")
+            MotionManager.sendMotionCommand("OFF") // ✅ Motion OFF コマンドを送信
+        }
+
+        // ✅ Flame ON ボタンのクリックリスナーを設定
+        btnFireOn.setOnClickListener {
+            println("🟢 Flame ON ボタンが押されました")
+            FlameManager.sendFlameCommand("ON") // ✅ Flame ON コマンドを送信
+        }
+
+        // ✅ Flame OFF ボタンのクリックリスナーを設定
+        btnFireOff.setOnClickListener {
+            println("🔴 Flame OFF ボタンが押されました")
+            FlameManager.sendFlameCommand("OFF") // ✅ Flame OFF コマンドを送信
         }
     }
 

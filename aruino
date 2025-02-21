@@ -1,0 +1,112 @@
+#include <Arduino.h>
+#include <DHT.h>
+
+// Pin cảm biến và thiết bị đầu ra
+#define PIN_PIR 7
+#define PIN_LED_R 9  
+#define PIN_LED_G 10
+#define PIN_LED_B 11
+#define PIN_LED_W 8  // ⚪ LED trắng nối chân 8
+#define DHT_PIN 2
+#define BUZZER_SIG 6
+#define FLAME_SENSOR_DO 5
+#define LM35_PIN A1  // 🔥 Cảm biến nhiệt độ LM35 nối chân A1
+#define RESET_BUTTON 3  // Nút nhấn reset
+
+// Định nghĩa loại cảm biến DHT
+#define DHT_TYPE DHT11
+DHT dht(DHT_PIN, DHT_TYPE);
+
+// Biến trạng thái cảm biến
+int motionDetected = 0;
+int flameDetected = 0;
+float temperature = 0;
+float humidity = 0;
+float lm35Temperature = 0;
+bool fireAlarm = false;  // Trạng thái cảnh báo cháy
+bool whiteLedShouldBeOn = false;  // 🚫 Trạng thái LED trắng
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+  
+  pinMode(PIN_LED_R, OUTPUT);
+  pinMode(PIN_LED_G, OUTPUT);
+  pinMode(PIN_LED_B, OUTPUT);
+  pinMode(PIN_LED_W, OUTPUT);
+  pinMode(BUZZER_SIG, OUTPUT);
+  pinMode(PIN_PIR, INPUT);
+  pinMode(FLAME_SENSOR_DO, INPUT);
+  pinMode(LM35_PIN, INPUT);
+  pinMode(RESET_BUTTON, INPUT_PULLUP);
+}
+
+void loop() {
+  // Đọc dữ liệu từ cảm biến
+  motionDetected = digitalRead(PIN_PIR);
+  flameDetected = digitalRead(FLAME_SENSOR_DO); // LOW = phát hiện lửa
+  temperature = dht.readTemperature();
+  humidity = dht.readHumidity();
+  lm35Temperature = analogRead(LM35_PIN) * (5.0 / 1023.0) * 100.0;  // LM35 đo nhiệt độ
+
+  Serial.print("🔥 Flame Detected: "); Serial.println(flameDetected == LOW ? "YES" : "NO");
+  Serial.print("⚪ White LED Status: "); Serial.println(whiteLedShouldBeOn ? "ON" : "OFF");
+  Serial.print("🌡 LM35 Temperature: "); Serial.println(lm35Temperature);
+
+  if (isnan(temperature) || isnan(humidity)) {
+    Serial.println("❌ Lỗi đọc dữ liệu từ cảm biến DHT!");
+    return;
+  }
+
+  // 🔥 Nếu phát hiện cháy, kích hoạt báo động và bật LED trắng
+  if (flameDetected == LOW) {  
+    Serial.println("🔥 CẢNH BÁO: Phát hiện lửa! LED trắng bật!");
+    fireAlarm = true;
+    whiteLedShouldBeOn = true;  // Giữ LED trắng sáng mãi mãi
+  }
+
+  // Nếu đang có cháy, duy trì cảnh báo
+  if (fireAlarm) {
+    setColor(255, 0, 0);  // LED đỏ
+    digitalWrite(BUZZER_SIG, HIGH);
+  }
+
+  // 🔥 Nếu nhiệt độ LM35 vượt 40°C, tắt LED trắng
+  if (fireAlarm && lm35Temperature > 40.0) {
+    Serial.println("⚠️ Nhiệt độ trên 40°C! LED trắng tắt!");
+    whiteLedShouldBeOn = false;
+  }
+
+  // Bật hoặc tắt LED trắng dựa vào trạng thái
+  digitalWrite(PIN_LED_W, whiteLedShouldBeOn ? HIGH : LOW);
+
+  // Nếu không có cháy, điều khiển LED theo nhiệt độ
+  if (!fireAlarm) {
+    digitalWrite(BUZZER_SIG, LOW);
+    if (temperature >= 27) {
+      setColor(0, 0, 255);
+    } else {
+      setColor(255, 255, 0);
+    }
+  }
+
+  // 🛑 Kiểm tra nút reset
+  if (digitalRead(RESET_BUTTON) == LOW) {
+    Serial.println("🔄 Reset hệ thống! LED trắng hoạt động trở lại.");
+    fireAlarm = false;
+    whiteLedShouldBeOn = false;
+    digitalWrite(BUZZER_SIG, LOW);
+    digitalWrite(PIN_LED_W, LOW);
+    setColor(255, 255, 0);
+    delay(500);
+  }
+
+  delay(1000);
+}
+
+// ✅ Điều khiển LED RGB
+void setColor(int red, int green, int blue) {
+  analogWrite(PIN_LED_R, 255 - red);
+  analogWrite(PIN_LED_G, 255 - green);
+  analogWrite(PIN_LED_B, 255 - blue);
+}
