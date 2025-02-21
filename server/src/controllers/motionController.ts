@@ -11,7 +11,7 @@ export const handleMotionCommand = (req: Request, res: Response): void => {
     }
 
     // ✅ 受信したコマンドをコンソールに出力
-    console.log(`⚠️ 受信した Motion コマンド: ${motion_command}`);
+    console.log(`🏃 受信した Motion コマンド: ${motion_command}`);
 
     // ✅ 受け取ったデータをそのままレスポンスとして返す
     res.json({ message: `✅ Motion コマンド '${motion_command}' を受信しました` });

@@ -7,9 +7,9 @@ const sensorSchema = new mongoose.Schema(
     humidity: { type: Number, required: true },
     motion: { type: Boolean, required: true },
     flame: { type: Boolean, required: true },
-    timestamp: { type: String, required: true },
+    timestamp: { type: Date, default: Date.now },
   },
-  { collection: "arduino_data" }
+  { collection: "sensordatas" }
 );
 
 export const SensorData = mongoose.model("SensorData", sensorSchema);
