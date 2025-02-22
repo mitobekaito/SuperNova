@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { sendCommandToArduino } from "../serial/serialCommand";
 
 //flameのコマンドを受け取る処理
 export const handleFlameCommand = (req: Request, res: Response): void => {
@@ -13,9 +14,10 @@ export const handleFlameCommand = (req: Request, res: Response): void => {
     //受信したコマンドをコンソールに出力
     console.log(`🔥 受信した Flame コマンド: ${flame_command}`);
 
-    //受け取ったデータをそのままレスポンスとして返す
+    sendCommandToArduino(flame_command); //flame_commandをArduinoに送信
+
     res.json({
-      message: `✅ Flame コマンド '${flame_command}' を受信しました`,
+      message: `✅ Flame コマンド '${flame_command}' を送信しました`,
     });
   } catch (error) {
     console.error("❌ Flame コマンド処理エラー:", error);

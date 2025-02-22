@@ -1,24 +1,12 @@
-import { SerialPort } from "serialport";
 import { ReadlineParser } from "@serialport/parser-readline";
 import { SensorData } from "../models/sensorData";
-import { SERIAL_PORT, BAUD_RATE, MAX_RECORDS } from "../config/dotenv";
+import { MAX_RECORDS } from "../config/dotenv";
+import { getSerialPort } from "./serialCommand";
 
 // ✅ シリアルポートを開く
 export const setupSerialPort = () => {
-  console.log("🔍 使用するシリアルポート:", SERIAL_PORT);
-  console.log("🔍 ボーレート:", BAUD_RATE);
-
-  const port = new SerialPort({ path: SERIAL_PORT, baudRate: BAUD_RATE });
-
-  // ✅ シリアルポートが開いたときの処理
-  port.on("open", () => {
-    console.log(`✅ シリアルポート ${SERIAL_PORT} が開かれました`);
-  });
-
-  // ✅ シリアルポートのエラー処理
-  port.on("error", (err) => {
-    console.error("❌ シリアルポートエラー:", err.message);
-  });
+  const port = getSerialPort(); // ✅ シリアルポートのインスタンスを取得
+  if (!port) return;
 
   const parser = port.pipe(new ReadlineParser({ delimiter: "\n" }));
 
@@ -57,7 +45,14 @@ export const setupSerialPort = () => {
  * 🌡 Arduino からの文字列データを解析し、JSON に変換する関数
  * 🌡 Temp: 25.20°C | 💧 Hum: 49.50% | 🔥 Fire: NO | 🚶 PIR: NO
  */
-const parseSensorData = (rawData: string): { temperature: number; humidity: number; motion: boolean; flame: boolean } | null => {
+const parseSensorData = (
+  rawData: string
+): {
+  temperature: number;
+  humidity: number;
+  motion: boolean;
+  flame: boolean;
+} | null => {
   try {
     // 📌 正規表現で数値を抽出
     const tempMatch = rawData.match(/Temp:\s*([\d.]+)°C/);
