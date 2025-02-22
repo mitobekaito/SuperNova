@@ -83,6 +83,9 @@ class SecondActivity : AppCompatActivity() {
             textSize = 14f
             setPadding(8, 8, 8, 8)
             gravity = android.view.Gravity.CENTER
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+            setSingleLine(false) // ✅ 自動改行を許可
+            setLines(2) // ✅ 2行固定
         }
         row.addView(timeText)
 

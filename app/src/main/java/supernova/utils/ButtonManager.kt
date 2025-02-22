@@ -29,16 +29,19 @@ object ButtonManager {
         btnAlarmOff.setOnClickListener { updateToggleButtons(activity, false, btnAlarmOn, btnAlarmOff) }
     }
 
-    private fun setInitialButtonState(activity: Activity, btnOn: Button, btnOff: Button) {
-        val initialOnColor = ContextCompat.getColor(activity, R.color.dark_yellow)
-        val initialOffColor = ContextCompat.getColor(activity, R.color.gray)
-        val initialTextColorOn = ContextCompat.getColor(activity, R.color.black)
-        val initialTextColorOff = ContextCompat.getColor(activity, R.color.white)
+    fun setInitialButtonState(activity: Activity, btnOn: Button, btnOff: Button) {
+        val onColor = ContextCompat.getColor(activity, R.color.dark_yellow)
+        val offColor = ContextCompat.getColor(activity, R.color.gray)
+        val textColorOn = ContextCompat.getColor(activity, R.color.black)
+        val textColorOff = ContextCompat.getColor(activity, R.color.white)
 
-        btnOn.setBackgroundColor(initialOnColor) // ✅ ONボタンの背景を黄色に設定
-        btnOn.setTextColor(initialTextColorOn)   // ✅ ONボタンの文字色を黒に設定
-        btnOff.setBackgroundColor(initialOffColor) // OFFボタンの背景をグレー
-        btnOff.setTextColor(initialTextColorOff) // OFFボタンの文字色を白
+        btnOn.setBackgroundColor(onColor)
+        btnOn.setTextColor(textColorOn)
+        btnOff.setBackgroundColor(offColor)
+        btnOff.setTextColor(textColorOff)
+
+        btnOn.tag = "ON"
+        btnOff.tag = "OFF"
     }
 
     private fun updateToggleButtons(activity: Activity, isOn: Boolean, btnOn: Button, btnOff: Button) {
@@ -52,8 +55,6 @@ object ButtonManager {
             btnOn.setTextColor(textColorOn)
             btnOff.setBackgroundColor(offColor)
             btnOff.setTextColor(textColorOff)
-
-            // ✅ ON のときにタグを更新
             btnOn.tag = "ON"
             btnOff.tag = "OFF"
         } else {
@@ -61,9 +62,6 @@ object ButtonManager {
             btnOn.setTextColor(textColorOff)
             btnOff.setBackgroundColor(onColor)
             btnOff.setTextColor(textColorOn)
-
-
-            // ✅ OFF のときにタグを更新
             btnOn.tag = "OFF"
             btnOff.tag = "ON"
         }
