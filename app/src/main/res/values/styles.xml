@@ -1,10 +1,8 @@
 <resources>
     <!-- テーマ自体は自由に -->
     <style name="Theme.Supernova" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- テーマ全体の設定など -->
-        <item name="android:colorBackground">?android:colorBackground</item>
-        <item name="android:windowBackground">@drawable/supernova_mobile</item>
-        <!-- etc... -->
+        <!-- 背景を白色に変更 -->
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <!-- MaterialButton 用のスタイル -->
@@ -17,7 +15,6 @@
         <!-- 高さや文字スタイルの調整 -->
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/universe</item>
         <!-- クリックエフェクト -->
         <item name="android:foreground">@drawable/ripple_supernova</item>
     </style>
