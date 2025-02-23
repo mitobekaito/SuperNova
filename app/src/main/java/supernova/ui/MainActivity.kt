@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
-            btnSupernova,btnReset,
+            btnSupernova, btnReset
         )
     }
 
