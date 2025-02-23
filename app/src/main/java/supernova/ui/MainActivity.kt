@@ -8,11 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
-import supernova.utils.LedManager
-import supernova.utils.FlameManager
-import supernova.utils.MotionManager
-import supernova.utils.ResetManager
-import supernova.utils.SupernovaManager
 import supernova.ui.MotionAlertActivity
 import supernova.ui.FlameAlertActivity
 import androidx.constraintlayout.widget.ConstraintSet.Motion
@@ -53,10 +48,6 @@ class MainActivity : AppCompatActivity() {
         SensorDataManager.startFetchingSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected, flameDetected ->
             handleSensorData(motionDetected, flameDetected)
         }
-
-        btnSupernova.setOnClickListener {
-            tvMoving.text = "FIRE"
-        }
     }
 
     private fun setupUI() {
@@ -88,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupButtonListeners() {
         ButtonManager.setupButtonListeners(
             this,
+            tvMoving,
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,

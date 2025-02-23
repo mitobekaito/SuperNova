@@ -6,17 +6,13 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import supernova.utils.LedManager
-import supernova.utils.MotionManager
-import supernova.utils.FlameManager
-import supernova.utils.SupernovaManager
-import supernova.utils.ResetManager
+import android.widget.TextView
 import supernova.ui.R
 
 object ButtonManager {
 
     fun setupButtonListeners(
-        activity: Activity,
+        activity: Activity,tvMoving: TextView,
         btnLEDOn: Button, btnLEDOff: Button,
         btnSoundOn: Button, btnSoundOff: Button,
         btnFireOn: Button, btnFireOff: Button,
@@ -68,17 +64,30 @@ object ButtonManager {
             sendCommand { FlameManager.sendFlameCommand("OFF") }
         }
 
-        // ✅ Supernova
+        // ✅ Supernovaボタン
         btnSupernova.setOnClickListener {
-            println("✅ Supernova ボタンが押されました")
+            println("🔥 Supernova ボタンが押されました")
+
+            // ✅ UIを更新（画面にテキストを表示）
+            activity.runOnUiThread {
+                tvMoving.text = "🔥 Supernova ボタンが押されました"
+            }
+
             sendCommand { SupernovaManager.sendSupernovaCommand("SUPERNOVA") }
         }
 
-        // ✅ RESET
+        // ✅ RESETボタン
         btnReset.setOnClickListener {
-            println("✅ RESET ボタンが押されました")
+            println("🔄 RESET ボタンが押されました")
+
+            // ✅ UIを更新（画面にテキストを表示）
+            activity.runOnUiThread {
+                tvMoving.text = "🔄 RESET ボタンが押されました"
+            }
+
             sendCommand { ResetManager.sendResetCommand("RESET") }
         }
+
 
     }
 
