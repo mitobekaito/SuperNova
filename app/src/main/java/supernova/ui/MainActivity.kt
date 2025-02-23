@@ -23,15 +23,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTemperature: TextView
     private lateinit var tvHumidity: TextView
     private lateinit var tvMoving: TextView
-    private lateinit var btnMongoDBConnect: Button
     private lateinit var btnLEDOn: Button
     private lateinit var btnLEDOff: Button
     private lateinit var btnSoundOn: Button
     private lateinit var btnSoundOff: Button
     private lateinit var btnFireOn: Button
     private lateinit var btnFireOff: Button
-    private lateinit var btnAlarmOn: Button
-    private lateinit var btnAlarmOff: Button
     private lateinit var btnGoToSecond: Button
 
     private var isAlertShown = false
@@ -53,16 +50,12 @@ class MainActivity : AppCompatActivity() {
             handleSensorData(motionDetected, flameDetected)
         }
 
-        btnMongoDBConnect.setOnClickListener {
-            tvMoving.text = "Mongo DB: Connecting..."
-        }
     }
 
     private fun setupUI() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
-        btnMongoDBConnect = findViewById(R.id.btnMongoDBConnect)
 
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
@@ -70,8 +63,6 @@ class MainActivity : AppCompatActivity() {
         btnSoundOff = findViewById(R.id.btnSoundOff)
         btnFireOn = findViewById(R.id.btnFireOn)
         btnFireOff = findViewById(R.id.btnFireOff)
-        btnAlarmOn = findViewById(R.id.btnAlarmOn)
-        btnAlarmOff = findViewById(R.id.btnAlarmOff)
 
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
@@ -84,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         ButtonManager.setInitialButtonState(this, btnLEDOn, btnLEDOff)
         ButtonManager.setInitialButtonState(this, btnSoundOn, btnSoundOff)
         ButtonManager.setInitialButtonState(this, btnFireOn, btnFireOff)
-        ButtonManager.setInitialButtonState(this, btnAlarmOn, btnAlarmOff)
     }
 
     private fun setupButtonListeners() {
@@ -93,7 +83,6 @@ class MainActivity : AppCompatActivity() {
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
-            btnAlarmOn, btnAlarmOff
         )
     }
 
