@@ -1,16 +1,16 @@
 package supernova.ui
 
+
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
-import supernova.ui.MotionAlertActivity
-import supernova.ui.FlameAlertActivity
-import androidx.constraintlayout.widget.ConstraintSet.Motion
+import supernova.utils.SensorDataManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,8 +36,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val imgBackground = findViewById<ImageView>(R.id.imgBackground)
+
+        // レイアウトが完了して ImageView のサイズが確定してから拡大＆アニメーションを適用
+        imgBackground.post {
+            // たとえば1.3倍に拡大して隙間を防ぐ
+            imgBackground.pivotX = imgBackground.width / 2f
+            imgBackground.pivotY = imgBackground.height / 2f
+            imgBackground.scaleX = 2.3f
+            imgBackground.scaleY = 1.4f
+
+            // 回転アニメーションを読み込み＆開始
+            val rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_background)
+            imgBackground.startAnimation(rotateAnim)
+        }
+
+        // 星アニメのカスタムView
+        val starFieldView = findViewById<StarFieldView>(R.id.starFieldView)
+        // レイアウトが確定したあと(= onSizeChanged後)に startStarAnimation するのが安全
+        starFieldView.post {
+            starFieldView.startStarAnimation()
+        }
+
+
         setupUI()
-        setupButtonListeners()
+        setupButtonListeners(starFieldView)
 
         // ✅ アプリ起動時に最新データを取得
         SensorDataManager.fetchLatestSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected, flameDetected ->
@@ -63,6 +87,8 @@ class MainActivity : AppCompatActivity() {
         btnFireOn = findViewById(R.id.btnFireOn)
         btnFireOff = findViewById(R.id.btnFireOff)
 
+
+
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
         btnGoToSecond.setOnClickListener {
@@ -76,14 +102,15 @@ class MainActivity : AppCompatActivity() {
         ButtonManager.setInitialButtonState(this, btnFireOn, btnFireOff)
     }
 
-    private fun setupButtonListeners() {
+    private fun setupButtonListeners(starFieldView: StarFieldView) {
         ButtonManager.setupButtonListeners(
             this,
             tvMoving,
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
-            btnSupernova, btnReset
+            btnSupernova,btnReset,
+            starFieldView = starFieldView
         )
     }
 

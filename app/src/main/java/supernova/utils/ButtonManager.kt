@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.widget.TextView
+import supernova.ui.StarFieldView
 import supernova.ui.R
 
 object ButtonManager {
@@ -16,7 +17,8 @@ object ButtonManager {
         btnLEDOn: Button, btnLEDOff: Button,
         btnSoundOn: Button, btnSoundOff: Button,
         btnFireOn: Button, btnFireOff: Button,
-        btnSupernova: Button, btnReset: Button
+        btnSupernova: Button, btnReset: Button,
+        starFieldView: StarFieldView
     ) {
         setInitialButtonState(activity, btnLEDOn, btnLEDOff)
         setInitialButtonState(activity, btnSoundOn, btnSoundOff)
@@ -68,9 +70,11 @@ object ButtonManager {
         btnSupernova.setOnClickListener {
             println("🔥 Supernova ボタンが押されました")
 
+            starFieldView.stopStarAnimation()
+
             // ✅ UIを更新（画面にテキストを表示）
             activity.runOnUiThread {
-                tvMoving.text = "🔥 Supernova ボタンが押されました"
+                tvMoving.text = "🔥 Supernova "
             }
 
             sendCommand { SupernovaManager.sendSupernovaCommand("SUPERNOVA") }
@@ -80,9 +84,11 @@ object ButtonManager {
         btnReset.setOnClickListener {
             println("🔄 RESET ボタンが押されました")
 
+            starFieldView.startStarAnimation()
+
             // ✅ UIを更新（画面にテキストを表示）
             activity.runOnUiThread {
-                tvMoving.text = "🔄 RESET ボタンが押されました"
+                tvMoving.text = "🔄 RESET "
             }
 
             sendCommand { ResetManager.sendResetCommand("RESET") }

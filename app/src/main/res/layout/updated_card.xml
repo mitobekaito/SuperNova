@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Updated: --"
             android:textSize="18sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/custom_font"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -1,69 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootFrame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal"
-    android:background="@color/white"> <!-- ✅ 白色の背景に変更 -->
+    android:layout_height="match_parent">
 
-    <!-- 温度・湿度カードの include -->
-    <include
-        layout="@layout/sensor_card"
+    <!-- 回転用のグラデーション背景を表示するImageView -->
+    <ImageView
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:src="@drawable/gradient_background"
+        android:scaleType="fitXY" />
 
-    <!-- 更新日時カードの include -->
-    <include
-        layout="@layout/updated_card"
+    <!-- 星のカスタムView -->
+    <supernova.ui.StarFieldView
+        android:id="@+id/starFieldView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
-    <!-- ボタン系カード(LED, Motion, Fire, Alarm)の include -->
-    <include
-        layout="@layout/button_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!-- Supernova ボタン -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSupernova"
-        style="@style/SupernovaButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Supernova"
-        android:layout_marginBottom="10dp" />
 
     <!-- ボタンを横並びに配置する LinearLayout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="8dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal"
+        android:background="@android:color/transparent">
 
-        <!-- チェックヒストリーボタン -->
+        <!-- Supernova ボタン -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGoToSecond"
+            android:id="@+id/btnSupernova"
             style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"/> <!-- ボタン間の余白を設定 -->
+            android:text="Supernova"
+            android:layout_marginBottom="10dp" />
 
-        <!-- リセットボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnReset"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
+        <!-- 温度・湿度カードの include -->
+        <include
+            layout="@layout/sensor_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 更新日時カードの include -->
+        <include
+            layout="@layout/updated_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- ボタン系カード(LED, Motion, Fire, Alarm)の include -->
+        <include
+            layout="@layout/button_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- ボタンを横並びに配置する LinearLayout -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reset"
-            android:layout_weight="1"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <!-- チェックヒストリーボタン -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoToSecond"
+                style="@style/SupernovaButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="History" />
+
+            <!-- リセットボタン -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReset"
+                style="@style/SupernovaButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Reset" />
+        </LinearLayout>
+
     </LinearLayout>
-
-
-
-</LinearLayout>
+</FrameLayout>
