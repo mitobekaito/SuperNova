@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import supernova.utils.LedManager
 import supernova.utils.MotionManager
 import supernova.utils.FlameManager
+import supernova.utils.SupernovaManager
+import supernova.utils.ResetManager
 import supernova.ui.R
 
 object ButtonManager {
@@ -64,6 +66,18 @@ object ButtonManager {
             println("🔴 Flame OFF ボタンが押されました")
             updateToggleButtons(activity, false, btnFireOn, btnFireOff)
             sendCommand { FlameManager.sendFlameCommand("OFF") }
+        }
+
+        // ✅ Supernova
+        btnSupernova.setOnClickListener {
+            println("✅ Supernova ボタンが押されました")
+            sendCommand { SupernovaManager.sendSupernovaCommand("SUPERNOVA") }
+        }
+
+        // ✅ RESET
+        btnReset.setOnClickListener {
+            println("✅ RESET ボタンが押されました")
+            sendCommand { ResetManager.sendResetCommand("RESET") }
         }
 
     }
