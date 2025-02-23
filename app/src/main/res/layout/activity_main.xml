@@ -10,7 +10,7 @@
     android:background="@color/white"> <!-- ✅ 白色の背景に変更 -->
 
 
-    <!-- MongoDB 接続ボタン -->
+    <!-- Supernova ボタン -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnsupernova"
         style="@style/SupernovaButtonStyle"

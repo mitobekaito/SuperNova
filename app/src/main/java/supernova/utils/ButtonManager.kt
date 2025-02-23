@@ -3,6 +3,12 @@ package supernova.utils
 import android.app.Activity
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import supernova.utils.LedManager
+import supernova.utils.MotionManager
+import supernova.utils.FlameManager
 import supernova.ui.R
 
 object ButtonManager {
@@ -12,21 +18,65 @@ object ButtonManager {
         btnLEDOn: Button, btnLEDOff: Button,
         btnSoundOn: Button, btnSoundOff: Button,
         btnFireOn: Button, btnFireOff: Button,
-        btnAlarmOn: Button, btnAlarmOff: Button
+        btnSupernova: Button, btnReset: Button
     ) {
         setInitialButtonState(activity, btnLEDOn, btnLEDOff)
         setInitialButtonState(activity, btnSoundOn, btnSoundOff)
         setInitialButtonState(activity, btnFireOn, btnFireOff)
-        setInitialButtonState(activity, btnAlarmOn, btnAlarmOff)
 
-        btnLEDOn.setOnClickListener { updateToggleButtons(activity, true, btnLEDOn, btnLEDOff) }
-        btnLEDOff.setOnClickListener { updateToggleButtons(activity, false, btnLEDOn, btnLEDOff) }
-        btnSoundOn.setOnClickListener { updateToggleButtons(activity, true, btnSoundOn, btnSoundOff) }
-        btnSoundOff.setOnClickListener { updateToggleButtons(activity, false, btnSoundOn, btnSoundOff) }
-        btnFireOn.setOnClickListener { updateToggleButtons(activity, true, btnFireOn, btnFireOff) }
-        btnFireOff.setOnClickListener { updateToggleButtons(activity, false, btnFireOn, btnFireOff) }
-        btnAlarmOn.setOnClickListener { updateToggleButtons(activity, true, btnAlarmOn, btnAlarmOff) }
-        btnAlarmOff.setOnClickListener { updateToggleButtons(activity, false, btnAlarmOn, btnAlarmOff) }
+        // ✅ LED ON
+        btnLEDOn.setOnClickListener {
+            println("🟢 LED ON ボタンが押されました")
+            updateToggleButtons(activity, true, btnLEDOn, btnLEDOff)
+            sendCommand { LedManager.sendLedCommand("ON") }
+        }
+
+        // ✅ LED OFF
+        btnLEDOff.setOnClickListener {
+            println("🔴 LED OFF ボタンが押されました")
+            updateToggleButtons(activity, false, btnLEDOn, btnLEDOff)
+            sendCommand { LedManager.sendLedCommand("OFF") }
+        }
+
+        // ✅ Motion ON
+        btnSoundOn.setOnClickListener {
+            println("🟢 Motion ON ボタンが押されました")
+            updateToggleButtons(activity, true, btnSoundOn, btnSoundOff)
+            sendCommand { MotionManager.sendMotionCommand("ON") }
+        }
+
+        // ✅ Motion OFF
+        btnSoundOff.setOnClickListener {
+            println("🔴 Motion OFF ボタンが押されました")
+            updateToggleButtons(activity, false, btnSoundOn, btnSoundOff)
+            sendCommand { MotionManager.sendMotionCommand("OFF") }
+        }
+
+        // ✅ Flame ON
+        btnFireOn.setOnClickListener {
+            println("🟢 Flame ON ボタンが押されました")
+            updateToggleButtons(activity, true, btnFireOn, btnFireOff)
+            sendCommand { FlameManager.sendFlameCommand("ON") }
+        }
+
+        // ✅ Flame OFF
+        btnFireOff.setOnClickListener {
+            println("🔴 Flame OFF ボタンが押されました")
+            updateToggleButtons(activity, false, btnFireOn, btnFireOff)
+            sendCommand { FlameManager.sendFlameCommand("OFF") }
+        }
+
+    }
+
+    // ✅ コマンドを非同期で送信する共通メソッド
+    private fun sendCommand(command: suspend () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                command()
+            } catch (e: Exception) {
+                println("⚠️ コマンド送信エラー: ${e.message}")
+            }
+        }
     }
 
     fun setInitialButtonState(activity: Activity, btnOn: Button, btnOff: Button) {
