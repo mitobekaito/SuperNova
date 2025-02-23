@@ -8,16 +8,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import supernova.utils.SensorDataManager
 import supernova.utils.ButtonManager
-import supernova.utils.LedManager
-import supernova.utils.FlameManager
-import supernova.utils.MotionManager
-import android.util.Log
-import supernova.network.ApiClient
-import supernova.network.SuperNovaCommand
-import supernova.network.RestCommand
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import supernova.ui.MotionAlertActivity
+import supernova.ui.FlameAlertActivity
+import androidx.constraintlayout.widget.ConstraintSet.Motion
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,9 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSoundOff: Button
     private lateinit var btnFireOn: Button
     private lateinit var btnFireOff: Button
+    private lateinit var btnGoToSecond: Button
     private lateinit var btnSupernova: Button
     private lateinit var btnReset: Button
-    private lateinit var btnGoToSecond: Button
 
 
     private var isAlertShown = false
@@ -55,23 +48,20 @@ class MainActivity : AppCompatActivity() {
         SensorDataManager.startFetchingSensorData(viewModel, tvTemperature, tvHumidity, tvMoving) { motionDetected, flameDetected ->
             handleSensorData(motionDetected, flameDetected)
         }
-
     }
 
     private fun setupUI() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
-
+        btnSupernova = findViewById(R.id.btnSupernova)
+        btnReset = findViewById(R.id.btnReset)
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
         btnSoundOn = findViewById(R.id.btnSoundOn)
         btnSoundOff = findViewById(R.id.btnSoundOff)
         btnFireOn = findViewById(R.id.btnFireOn)
         btnFireOff = findViewById(R.id.btnFireOff)
-        btnSupernova = findViewById(R.id.btnsupernova)
-        btnReset = findViewById(R.id.btnRESET)
-
 
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
@@ -89,10 +79,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupButtonListeners() {
         ButtonManager.setupButtonListeners(
             this,
+            tvMoving,
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
-            btnSupernova, btnReset
+            btnSupernova,btnReset,
         )
     }
 
