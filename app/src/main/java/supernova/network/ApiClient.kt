@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 
 // ✅ Node.js サーバーのベースURL
-private const val BASE_URL = "http://172.18.2.206:5000/"
+private const val BASE_URL = "http://172.18.2.213:5000/"
 
 // ✅ OkHttpClient（キャッシュ無効 & ログ出力）
 private val client = OkHttpClient.Builder()
@@ -92,42 +92,26 @@ data class LedCommand(
     val led_command: String
 )
 
-data class LedCommandResponse(
-    val message: String
-)
 
 // 📌 Motion コマンド送信用
 data class MotionCommand(
     val motion_command: String
 )
 
-data class MotionCommandResponse(
-    val message: String
-)
 
 // 📌 Flame コマンド送信用
 data class FlameCommand(
     val flame_command: String
 )
 
-data class FlameCommandResponse(
-    val message: String
-)
 
 // 📌 SuperNova コマンド送信用
 data class SuperNovaCommand(
     val supernova_command: String
 )
 
-data class SuperNovaCommandResponse(
-    val message: String
-)
 
 // 📌 リセットコマンド送信用
 data class RestCommand(
     val reset_command: String
-)
-
-data class RestCommandResponse(
-    val message: String
 )

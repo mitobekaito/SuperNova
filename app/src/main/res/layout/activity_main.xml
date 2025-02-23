@@ -12,7 +12,7 @@
 
     <!-- Supernova ボタン -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnsupernova"
+        android:id="@+id/btnSupernova"
         style="@style/SupernovaButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
 
         <!-- リセットボタン -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRESET"
+            android:id="@+id/btnReset"
             style="@style/SupernovaButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

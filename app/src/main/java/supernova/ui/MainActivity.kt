@@ -11,6 +11,8 @@ import supernova.utils.ButtonManager
 import supernova.utils.LedManager
 import supernova.utils.FlameManager
 import supernova.utils.MotionManager
+import supernova.utils.ResetManager
+import supernova.utils.SupernovaManager
 import supernova.ui.MotionAlertActivity
 import supernova.ui.FlameAlertActivity
 import androidx.constraintlayout.widget.ConstraintSet.Motion
@@ -29,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnFireOn: Button
     private lateinit var btnFireOff: Button
     private lateinit var btnGoToSecond: Button
-    private lateinit var btnsupernova: Button
-    private lateinit var btnRESET: Button
+    private lateinit var btnSupernova: Button
+    private lateinit var btnReset: Button
 
 
     private var isAlertShown = false
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             handleSensorData(motionDetected, flameDetected)
         }
 
-        btnsupernova.setOnClickListener {
+        btnSupernova.setOnClickListener {
             tvMoving.text = "FIRE"
         }
     }
@@ -61,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
-        btnsupernova = findViewById(R.id.btnsupernova)
-        btnRESET = findViewById(R.id.btnRESET)
+        btnSupernova = findViewById(R.id.btnSupernova)
+        btnReset = findViewById(R.id.btnReset)
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
         btnSoundOn = findViewById(R.id.btnSoundOn)
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
-            btnRESET,btnsupernova,
+            btnSupernova,btnReset,
         )
     }
 
