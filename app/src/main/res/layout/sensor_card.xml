@@ -28,7 +28,8 @@
             android:text="--°C"
             android:textSize="48sp"
             android:textStyle="bold"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/custom_font"/>
 
         <!-- 湿度表示 -->
         <TextView
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:text="Humidity: --%"
             android:textSize="24sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/custom_font"/>
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
