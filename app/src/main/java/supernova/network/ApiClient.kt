@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 
 // ✅ Node.js サーバーのベースURL
-private const val BASE_URL = "http://172.16.14.158:5000/"
+private const val BASE_URL = "http://172.18.2.206:5000/"
 
 // ✅ OkHttpClient（キャッシュ無効 & ログ出力）
 private val client = OkHttpClient.Builder()
@@ -49,10 +49,6 @@ interface ApiService {
     @GET("api/sensor-data")
     suspend fun getSensorData(): List<SensorData>
 
-    // 📌 センサーデータを送信
-    @POST("api/sensor-data")
-    suspend fun postSensorData(@Body data: SensorData): ResponseMessage
-
     // 📌 LED コマンドを送信
     @POST("api/led-command")
     suspend fun sendLedCommand(@Body command: LedCommand): ResponseMessage
@@ -64,6 +60,14 @@ interface ApiService {
     // 📌 Flame コマンドを送信
     @POST("api/flame-command")
     suspend fun sendFlameCommand(@Body command: FlameCommand): ResponseMessage
+
+    // 📌 SuperNovaコマンドを送信
+    @POST("api/supernova-command")
+    suspend fun sendSuperNovaCommand(@Body command: SuperNovaCommand): ResponseMessage
+
+    // 📌 リセットコマンドを送信
+    @POST("api/reset-command")
+    suspend fun sendResetCommand(@Body command: RestCommand): ResponseMessage
 
 }
 
@@ -107,5 +111,23 @@ data class FlameCommand(
 )
 
 data class FlameCommandResponse(
+    val message: String
+)
+
+// 📌 SuperNova コマンド送信用
+data class SuperNovaCommand(
+    val supernova_command: String
+)
+
+data class SuperNovaCommandResponse(
+    val message: String
+)
+
+// 📌 リセットコマンド送信用
+data class RestCommand(
+    val reset_command: String
+)
+
+data class RestCommandResponse(
     val message: String
 )

@@ -10,13 +10,13 @@
     android:background="@color/white"> <!-- ✅ 白色の背景に変更 -->
 
 
-    <!-- MongoDB 接続ボタン -->
+    <!-- Supernova ボタン -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMongoDBConnect"
+        android:id="@+id/btnsupernova"
         style="@style/SupernovaButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connect to Mongo DB"
+        android:text="Supernova"
         android:layout_marginBottom="10dp" />
 
     <!-- 温度・湿度カードの include -->
@@ -37,14 +37,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- チェックヒストリーボタン -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnGoToSecond"
-        style="@style/SupernovaButtonStyle"
-        android:layout_width="wrap_content"
+    <!-- ボタンを横並びに配置する LinearLayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="History"
-        android:layout_marginTop="8dp" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <!-- チェックヒストリーボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoToSecond"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"/> <!-- ボタン間の余白を設定 -->
+
+        <!-- リセットボタン -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRESET"
+            style="@style/SupernovaButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>
