@@ -9,16 +9,6 @@
     android:gravity="center_horizontal"
     android:background="@color/white"> <!-- ✅ 白色の背景に変更 -->
 
-
-    <!-- Supernova ボタン -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSupernova"
-        style="@style/SupernovaButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Supernova"
-        android:layout_marginBottom="10dp" />
-
     <!-- 温度・湿度カードの include -->
     <include
         layout="@layout/sensor_card"
@@ -36,6 +26,15 @@
         layout="@layout/button_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <!-- Supernova ボタン -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSupernova"
+        style="@style/SupernovaButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supernova"
+        android:layout_marginBottom="10dp" />
 
     <!-- ボタンを横並びに配置する LinearLayout -->
     <LinearLayout
