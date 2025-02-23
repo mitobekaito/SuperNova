@@ -11,10 +11,13 @@ import supernova.utils.ButtonManager
 import supernova.utils.LedManager
 import supernova.utils.FlameManager
 import supernova.utils.MotionManager
-import supernova.ui.MotionAlertActivity
-import supernova.ui.FlameAlertActivity
 import android.util.Log
-import androidx.constraintlayout.widget.ConstraintSet.Motion
+import supernova.network.ApiClient
+import supernova.network.SuperNovaCommand
+import supernova.network.RestCommand
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +32,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSoundOff: Button
     private lateinit var btnFireOn: Button
     private lateinit var btnFireOff: Button
+    private lateinit var btnSupernova: Button
+    private lateinit var btnReset: Button
     private lateinit var btnGoToSecond: Button
+
 
     private var isAlertShown = false
 
@@ -63,6 +69,9 @@ class MainActivity : AppCompatActivity() {
         btnSoundOff = findViewById(R.id.btnSoundOff)
         btnFireOn = findViewById(R.id.btnFireOn)
         btnFireOff = findViewById(R.id.btnFireOff)
+        btnSupernova = findViewById(R.id.btnsupernova)
+        btnReset = findViewById(R.id.btnRESET)
+
 
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
@@ -83,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             btnLEDOn, btnLEDOff,
             btnSoundOn, btnSoundOff,
             btnFireOn, btnFireOff,
+            btnSupernova, btnReset
         )
     }
 

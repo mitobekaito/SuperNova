@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import supernova.utils.LedManager
 import supernova.utils.MotionManager
 import supernova.utils.FlameManager
+import supernova.utils.SupernovaManager
+import supernova.utils.ResetManager
 import supernova.ui.R
 
 object ButtonManager {
@@ -66,6 +68,17 @@ object ButtonManager {
             sendCommand { FlameManager.sendFlameCommand("OFF") }
         }
 
+        // ✅ Supernova
+        btnSupernova.setOnClickListener {
+            println("🚀 Supernova ボタンが押されました")
+            sendCommand { SupernovaManager.sendSupernovaCommand("Supernova") }
+        }
+
+        // ✅ Reset
+        btnReset.setOnClickListener {
+            println("🔄 Reset ボタンが押されました")
+            sendCommand { ResetManager.sendResetCommand("Reset") }
+        }
     }
 
     // ✅ コマンドを非同期で送信する共通メソッド
