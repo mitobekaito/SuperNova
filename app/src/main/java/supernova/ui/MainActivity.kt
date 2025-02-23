@@ -13,7 +13,6 @@ import supernova.utils.FlameManager
 import supernova.utils.MotionManager
 import supernova.ui.MotionAlertActivity
 import supernova.ui.FlameAlertActivity
-import android.util.Log
 import androidx.constraintlayout.widget.ConstraintSet.Motion
 
 
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMongoDBConnect.setOnClickListener {
-            tvMoving.text = "Mongo DB: Connecting..."
+            tvMoving.text = "FIRE"
         }
     }
 
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
-        btnMongoDBConnect = findViewById(R.id.btnMongoDBConnect)
+        btnMongoDBConnect = findViewById(R.id.btnsupernova)
 
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
