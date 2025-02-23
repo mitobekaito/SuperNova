@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
         btnsupernova = findViewById(R.id.btnsupernova)
-
+        btnRESET = findViewById(R.id.btnRESET)
         btnLEDOn = findViewById(R.id.btnLEDOn)
         btnLEDOff = findViewById(R.id.btnLEDOff)
         btnSoundOn = findViewById(R.id.btnSoundOn)
