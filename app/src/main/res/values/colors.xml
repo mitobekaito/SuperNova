@@ -25,4 +25,7 @@
     <!-- 少し暗めの背景用グラデーションに使う色など -->
     <color name="supernovaPurpleDark">#311B92</color>
     <color name="supernovaPurpleLight">#7E57C2</color>
+
+    <color name="primaryColor">#6200EE</color>
+    <color name="secondaryColor">#03DAC5</color>
 </resources>

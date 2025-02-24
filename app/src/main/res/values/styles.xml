@@ -1,32 +1,52 @@
-<resources>
-    <!-- テーマ自体は自由に -->
-    <style name="Theme.Supernova" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- 背景を白色に変更 -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Theme.SuperNova" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary branding color -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/purple_700</item>
+
+        <!-- Default background -->
         <item name="android:windowBackground">@color/white</item>
+
+        <!-- アクションバーのカスタマイズ -->
+        <item name="android:actionBarStyle">@style/CustomActionBar</item>
+        <item name="android:navigationBarColor">@color/purple_700</item>
+
     </style>
 
-    <!-- MaterialButton 用のスタイル -->
-    <style name="SupernovaButtonStyle" parent="Widget.MaterialComponents.Button">
-        <!-- 色設定 -->
+    <!-- カスタムアクションバーのスタイル -->
+    <style name="CustomActionBar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:titleTextColor">@color/white</item>
+    </style>
+
+    <!-- 🎨 グラデーションボタンスタイル -->
+    <style name="SupernovaGradientButtonStyle" parent="Widget.MaterialComponents.Button">
+        <!-- グラデーション背景を適用 -->
+        <item name="android:background">@drawable/gradient_pastel</item>
+
+        <!-- Materialのデフォルト色を無効化 -->
+        <item name="android:backgroundTint">@null</item>
+        <item name="backgroundTint">@null</item>
+
+        <!-- 角丸を大きくして丸っぽい形に (必要ならもっと大きいdpに) -->
+        <item name="cornerRadius">30dp</item>
+
+        <!-- Elevationを高めて影を濃くし、立体感を持たせる -->
+        <item name="android:elevation">8dp</item>
+        <!-- 一部端末で影が出にくい場合、 translationZ も指定すると効果があることがあります -->
+        <item name="android:translationZ">8dp</item>
+
+        <!-- テキストやフォントなど -->
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:backgroundTint">@color/supernovaAccent</item>
-        <!-- ボタンの角丸を少し大きめにする -->
-        <item name="cornerRadius">16dp</item>
-        <!-- 高さや文字スタイルの調整 -->
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <!-- クリックエフェクト -->
         <item name="android:foreground">@drawable/ripple_supernova</item>
     </style>
 
-    <!-- MaterialCardView 用のスタイル (必要に応じて) -->
-    <style name="SupernovaCardStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardElevation">8dp</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:backgroundTint">@color/supernovaCardBackground</item>
-        <item name="strokeColor">@color/supernovaAccent</item>
-        <item name="strokeWidth">2dp</item>
-    </style>
+
 </resources>

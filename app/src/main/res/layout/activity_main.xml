@@ -29,15 +29,6 @@
         android:gravity="center_horizontal"
         android:background="@android:color/transparent">
 
-        <!-- Supernova ボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSupernova"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Supernova"
-            android:layout_marginBottom="10dp" />
-
         <!-- 温度・湿度カードの include -->
         <include
             layout="@layout/sensor_card"
@@ -67,7 +58,7 @@
             <!-- チェックヒストリーボタン -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGoToSecond"
-                style="@style/SupernovaButtonStyle"
+                style="@style/SupernovaGradientButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -77,12 +68,22 @@
             <!-- リセットボタン -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReset"
-                style="@style/SupernovaButtonStyle"
+                style="@style/SupernovaGradientButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Reset" />
         </LinearLayout>
+
+        <!-- Supernova ボタン (History & Reset ボタンの下に移動) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSupernova"
+            style="@style/SupernovaGradientButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Supernova"
+            android:backgroundTint="@null"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 </FrameLayout>
