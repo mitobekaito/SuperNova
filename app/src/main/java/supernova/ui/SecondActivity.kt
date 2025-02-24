@@ -1,7 +1,9 @@
 package supernova.ui
 
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import supernova.network.ApiClient
 import supernova.network.SensorData
+import supernova.ui.StarFieldView
 import supernova.utils.SensorHistoryAdapter
 
 class SecondActivity : AppCompatActivity() {
@@ -22,6 +25,23 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+
+        val imgBackground = findViewById<ImageView>(R.id.imgBackground)
+        imgBackground.post {
+            imgBackground.pivotX = imgBackground.width / 2f
+            imgBackground.pivotY = imgBackground.height / 2f
+            imgBackground.scaleX = 2.3f
+            imgBackground.scaleY = 1.4f
+
+            val rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_background)
+            imgBackground.startAnimation(rotateAnim)
+        }
+
+        // 星アニメーションのセットアップ
+        val starFieldView = findViewById<StarFieldView>(R.id.starFieldView)
+        starFieldView.post {
+            starFieldView.startStarAnimation()
+        }
 
         btnBack = findViewById(R.id.btnBack)
         recyclerHistory = findViewById(R.id.recyclerHistory)
