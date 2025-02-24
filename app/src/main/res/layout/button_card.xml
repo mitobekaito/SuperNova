@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
         android:backgroundTint="@color/supernovaCardBackground"
         app:strokeColor="@color/supernovaAccent"
@@ -21,16 +22,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginStart="150dp"
                 android:text="LED"
-                android:textColor="@color/supernovaAccent"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchLED"
@@ -45,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
         android:backgroundTint="@color/supernovaCardBackground"
         app:strokeColor="@color/supernovaAccent"
@@ -55,16 +61,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginStart="100dp"
                 android:text="Motion Detected"
-                android:textColor="@color/supernovaAccent"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchMotion"
@@ -79,7 +89,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
         android:backgroundTint="@color/supernovaCardBackground"
         app:strokeColor="@color/supernovaAccent"
@@ -89,16 +100,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginStart="110dp"
                 android:text="Fire Detected"
-                android:textColor="@color/supernovaAccent"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchFire"

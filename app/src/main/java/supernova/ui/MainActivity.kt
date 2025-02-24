@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         // レイアウトが完了して ImageView のサイズが確定してから拡大＆アニメーションを適用
         imgBackground.post {
-            // たとえば1.3倍に拡大して隙間を防ぐ
+            // 拡大して隙間を防ぐ
             imgBackground.pivotX = imgBackground.width / 2f
             imgBackground.pivotY = imgBackground.height / 2f
             imgBackground.scaleX = 2.3f
