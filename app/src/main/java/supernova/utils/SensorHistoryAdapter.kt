@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import supernova.ui.R
 import supernova.network.SensorData
-import supernova.utils.TimeUtils.formatTimestamp
+import supernova.utils.HistoryTimeUtils.formatTimestamp
 
 class SensorHistoryAdapter : ListAdapter<SensorData, SensorHistoryAdapter.ViewHolder>(DiffCallback()) {
 
