@@ -54,6 +54,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
                         android:textColor="@android:color/white"/>
 
                     <TextView
@@ -63,15 +64,17 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
                         android:textColor="@android:color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:text="Humidity (%)"
+                        android:text="Hum (%)"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
                         android:textColor="@android:color/white"/>
 
                     <TextView
@@ -81,6 +84,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
                         android:textColor="@android:color/white"/>
 
                     <TextView
@@ -90,6 +94,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
                         android:textColor="@android:color/white"/>
                 </TableRow>
             </TableLayout>
@@ -119,11 +124,12 @@
         <Button
             android:id="@+id/btnBack"
             style="@style/SupernovaGradientButtonStyle"
+            android:fontFamily="@font/custom_griffy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_margin="1dp"
+            android:text="Back" />
     </LinearLayout>
 
     <!-- 星のカスタムView -->
