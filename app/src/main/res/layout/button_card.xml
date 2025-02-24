@@ -48,7 +48,7 @@
         <!-- ONボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLEDOn"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         <!-- OFFボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLEDOff"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@ app:cardUseCompatPadding="true">
         <!-- ONボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSoundOn"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@ app:cardUseCompatPadding="true">
         <!-- OFFボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSoundOff"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -172,7 +172,7 @@ app:cardUseCompatPadding="true">
         <!-- ONボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFireOn"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -182,7 +182,7 @@ app:cardUseCompatPadding="true">
         <!-- OFFボタン -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFireOff"
-            style="@style/SupernovaButtonStyle"
+            style="@style/SupernovaGradientButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
