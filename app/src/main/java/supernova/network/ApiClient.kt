@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 
 // ✅ Node.js サーバーのベースURL
-private const val BASE_URL = "http://172.18.2.213:5000/"
+private const val BASE_URL = "http://172.16.14.26:5000/"
 
 // ✅ OkHttpClient（キャッシュ無効 & ログ出力）
 private val client = OkHttpClient.Builder()

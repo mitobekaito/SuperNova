@@ -9,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import supernova.utils.ButtonManager
 import supernova.utils.SensorDataManager
+import supernova.ui.StarFieldView
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,16 +21,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTemperature: TextView
     private lateinit var tvHumidity: TextView
     private lateinit var tvMoving: TextView
-    private lateinit var btnLEDOn: Button
-    private lateinit var btnLEDOff: Button
-    private lateinit var btnSoundOn: Button
-    private lateinit var btnSoundOff: Button
-    private lateinit var btnFireOn: Button
-    private lateinit var btnFireOff: Button
-    private lateinit var btnGoToSecond: Button
+    private lateinit var switchLED: SwitchCompat
+    private lateinit var switchMotion: SwitchCompat
+    private lateinit var switchFire: SwitchCompat
     private lateinit var btnSupernova: Button
     private lateinit var btnReset: Button
-
+    private lateinit var btnGoToSecond: Button
 
     private var isAlertShown = false
 
@@ -78,17 +76,11 @@ class MainActivity : AppCompatActivity() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
         tvMoving = findViewById(R.id.tvUpdated)
+        switchLED = findViewById(R.id.switchLED)
+        switchMotion = findViewById(R.id.switchMotion)
+        switchFire = findViewById(R.id.switchFire)
         btnSupernova = findViewById(R.id.btnSupernova)
         btnReset = findViewById(R.id.btnReset)
-        btnLEDOn = findViewById(R.id.btnLEDOn)
-        btnLEDOff = findViewById(R.id.btnLEDOff)
-        btnSoundOn = findViewById(R.id.btnSoundOn)
-        btnSoundOff = findViewById(R.id.btnSoundOff)
-        btnFireOn = findViewById(R.id.btnFireOn)
-        btnFireOff = findViewById(R.id.btnFireOff)
-
-
-
         btnGoToSecond = findViewById(R.id.btnGoToSecond)
 
         btnGoToSecond.setOnClickListener {
@@ -96,27 +88,25 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // ✅ すべてのボタンの初期状態を ON に設定
-        ButtonManager.setInitialButtonState(this, btnLEDOn, btnLEDOff)
-        ButtonManager.setInitialButtonState(this, btnSoundOn, btnSoundOff)
-        ButtonManager.setInitialButtonState(this, btnFireOn, btnFireOff)
+        // ✅ すべてのスイッチをONに設定（初期状態）
+        switchLED.isChecked = true
+        switchMotion.isChecked = true
+        switchFire.isChecked = true
     }
 
     private fun setupButtonListeners(starFieldView: StarFieldView) {
         ButtonManager.setupButtonListeners(
             this,
             tvMoving,
-            btnLEDOn, btnLEDOff,
-            btnSoundOn, btnSoundOff,
-            btnFireOn, btnFireOff,
-            btnSupernova,btnReset,
+            switchLED, switchMotion, switchFire,
+            btnSupernova, btnReset,
             starFieldView = starFieldView
         )
     }
 
     private fun handleSensorData(motionDetected: Boolean, flameDetected: Boolean) {
-        val isMotionAlertOn = btnSoundOn.tag == "ON"
-        val isFireAlertOn = btnFireOn.tag == "ON"
+        val isMotionAlertOn = switchMotion.isChecked
+        val isFireAlertOn = switchFire.isChecked
 
         if (motionDetected && isMotionAlertOn) {
             handleMotionAlert()
