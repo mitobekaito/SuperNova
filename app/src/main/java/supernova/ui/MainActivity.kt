@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        isAlertShown = false // メイン画面に戻ったらアラート表示をリセット
+    }
+
     private fun setupUI() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tvHumidity = findViewById(R.id.tvHumidity)
@@ -110,7 +115,9 @@ class MainActivity : AppCompatActivity() {
 
         if (motionDetected && isMotionAlertOn) {
             handleMotionAlert()
-        } else if (flameDetected && isFireAlertOn) {
+        }
+
+        if (flameDetected && isFireAlertOn) {
             handleFlameAlert()
         }
     }
