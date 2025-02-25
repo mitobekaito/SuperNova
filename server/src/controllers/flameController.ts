@@ -14,7 +14,9 @@ export const handleFlameCommand = (req: Request, res: Response): void => {
     //受信したコマンドをコンソールに出力
     console.log(`🔥 受信した Flame コマンド: ${flame_command}`);
 
-    sendCommandToArduino(flame_command); //flame_commandをArduinoに送信
+    sendCommandToArduino('FIRE flame_command'); //flame_commandをArduinoに送信
+    console.log(`FIRE ${flame_command} を送信しました。`);
+    
 
     res.json({
       message: `✅ Flame コマンド '${flame_command}' を送信しました`,

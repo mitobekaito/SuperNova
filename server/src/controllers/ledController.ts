@@ -13,7 +13,8 @@ export const handleLedCommand = (req: Request, res: Response): void => {
 
     console.log(`💡 受信した LED コマンド: ${led_command}`);
 
-    sendCommandToArduino(led_command);
+    sendCommandToArduino(`LED ${led_command}`); // LED コマンドを Arduino に送信
+    console.log(`LED ${led_command} を送信しました。`);
 
     res.json({ message: `✅ LED コマンド '${led_command}' を送信しました` });
   } catch (error) {
