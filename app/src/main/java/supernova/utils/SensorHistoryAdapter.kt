@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import supernova.ui.R
 import supernova.network.SensorData
+import supernova.utils.HistoryTimeUtils.formatTimestamp
 
 class SensorHistoryAdapter : ListAdapter<SensorData, SensorHistoryAdapter.ViewHolder>(DiffCallback()) {
 
@@ -28,7 +29,10 @@ class SensorHistoryAdapter : ListAdapter<SensorData, SensorHistoryAdapter.ViewHo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
-        val formattedTimestamp = data.timestamp.replace("T", "\n").substring(0, 19)
+
+        // ✅ `timestamp` を `+7時間` に変換
+        val formattedTimestamp = formatTimestamp(data.timestamp)
+
         holder.timestamp.text = "\n$formattedTimestamp"
 
         val paddingTop = 40
@@ -41,6 +45,7 @@ class SensorHistoryAdapter : ListAdapter<SensorData, SensorHistoryAdapter.ViewHo
         holder.flame.text = if (data.flame) "Detected" else "None"
         holder.flame.setPadding(0, paddingTop, 0, 0)
     }
+
 
     class DiffCallback : DiffUtil.ItemCallback<SensorData>() {
         override fun areItemsTheSame(oldItem: SensorData, newItem: SensorData): Boolean {

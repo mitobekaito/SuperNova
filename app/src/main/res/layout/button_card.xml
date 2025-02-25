@@ -6,191 +6,121 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- LEDのON/OFFボタンカード -->
+    <!-- LED トグルスイッチ -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
         android:backgroundTint="@color/supernovaCardBackground"
         app:strokeColor="@color/supernovaAccent"
-        app:strokeWidth="2dp"
-        app:cardUseCompatPadding="true">
+        app:strokeWidth="2dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-    <!-- LEDのラベル -->
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="LED"
-        android:textColor="@color/supernovaAccent"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-        android:maxLines="1"
-        android:ellipsize="end" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
-
-        <!-- ONボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLEDOn"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ON"
-            android:layout_marginEnd="4dp"/>
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <!-- OFFボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLEDOff"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="OFF"
-            android:layout_marginStart="4dp"/>
-    </LinearLayout>
-</LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="150dp"
+                android:text="LED"
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchLED"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Motion DetectedのON/OFFボタンカード -->
-<com.google.android.material.card.MaterialCardView
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_margin="4dp"
-app:cardCornerRadius="16dp"
-app:cardElevation="8dp"
-android:backgroundTint="@color/supernovaCardBackground"
-app:strokeColor="@color/supernovaAccent"
-app:strokeWidth="2dp"
-app:cardUseCompatPadding="true">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:orientation="horizontal"
-    android:weightSum="2">
-
-    <!-- Motion Detectedのラベル -->
-    <TextView
-        android:layout_width="0dp"
+    <!-- Motion Detected トグルスイッチ -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="Motion Detected"
-        android:textColor="@color/supernovaAccent"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_margin="4dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="@color/supernovaCardBackground"
+        app:strokeColor="@color/supernovaAccent"
+        app:strokeWidth="2dp">
 
-        android:maxLines="1"
-        android:ellipsize="end" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="0dp"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="100dp"
+                android:text="Motion Detected"
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchMotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Fire Detected トグルスイッチ -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
+        android:layout_margin="4dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="@color/supernovaCardBackground"
+        app:strokeColor="@color/supernovaAccent"
+        app:strokeWidth="2dp">
 
-        <!-- ONボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSoundOn"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ON"
-            android:layout_marginEnd="4dp"/>
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <!-- OFFボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSoundOff"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="OFF"
-            android:layout_marginStart="4dp"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="110dp"
+                android:text="Fire Detected"
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/custom_griffy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchFire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
-
-    <!-- Fire DetectedのON/OFFボタンカード -->
-<com.google.android.material.card.MaterialCardView
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_margin="4dp"
-app:cardCornerRadius="16dp"
-app:cardElevation="8dp"
-android:backgroundTint="@color/supernovaCardBackground"
-app:strokeColor="@color/supernovaAccent"
-app:strokeWidth="2dp"
-app:cardUseCompatPadding="true">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:orientation="horizontal"
-    android:weightSum="2">
-
-    <!-- Fire Detectedのラベル -->
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="Fire Detected"
-        android:textColor="@color/supernovaAccent"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-        android:maxLines="1"
-        android:ellipsize="end" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
-
-        <!-- ONボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnFireOn"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="ON"
-            android:layout_marginEnd="4dp"/>
-
-        <!-- OFFボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnFireOff"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="OFF"
-            android:layout_marginStart="4dp"/>
-    </LinearLayout>
-</LinearLayout>
-</com.google.android.material.card.MaterialCardView>
-
-
-    </LinearLayout>

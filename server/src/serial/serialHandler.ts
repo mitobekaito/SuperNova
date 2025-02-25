@@ -54,10 +54,16 @@ const parseSensorData = (
   flame: boolean;
 } | null => {
   try {
-    // 📌 正規表現を英語データに適応
-    const tempMatch = rawData.match(/Temperature:\s*([\d.]+)°C/);
+    // 🌡 実際のログでは "Temp: 25.20°C" なので、正規表現を "Temp:" に
+     const tempMatch = rawData.match(/Temp:\s*([\d.]+)°C/);
+
+    // 💧 "Humidity" はそのまま "Humidity:" でOK
     const humMatch = rawData.match(/Humidity:\s*([\d.]+)%/);
+
+    // 🔥 "Fire: NO" or "Fire: YES" or "Fire: ON"
     const fireMatch = rawData.match(/Fire:\s*(YES|NO|ON|OFF)/);
+
+    // 🚶 "Motion: NO" or "Motion: YES" or "Motion: ON"
     const motionMatch = rawData.match(/Motion:\s*(YES|NO|ON|OFF)/);
 
     if (!tempMatch || !humMatch || !fireMatch || !motionMatch) {
@@ -68,13 +74,14 @@ const parseSensorData = (
     return {
       temperature: parseFloat(tempMatch[1]),
       humidity: parseFloat(humMatch[1]),
-      flame: fireMatch[1] === "YES" || fireMatch[1] === "ON", // YES/ON = true
-      motion: motionMatch[1] === "YES" || motionMatch[1] === "ON", // YES/ON = true
+      flame: fireMatch[1] === "YES" || fireMatch[1] === "ON",
+      motion: motionMatch[1] === "YES" || motionMatch[1] === "ON",
     };
   } catch (error) {
     console.error("❌ Sensor data parsing error:", error);
     return null;
   }
 };
+
 
 

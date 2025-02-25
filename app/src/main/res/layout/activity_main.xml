@@ -1,70 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootFrame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal"
-    android:background="@color/white"> <!-- ✅ 白色の背景に変更 -->
+    android:layout_height="match_parent">
 
-
-    <!-- Supernova ボタン -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnsupernova"
-        style="@style/SupernovaButtonStyle"
+    <!-- 背景画像を中央に配置 -->
+    <ImageView
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Supernova"
-        android:layout_marginBottom="10dp" />
+        android:layout_height="match_parent"
+        android:src="@drawable/gradient_background"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"/>
 
-    <!-- 温度・湿度カードの include -->
-    <include
-        layout="@layout/sensor_card"
+    <!-- 星のカスタムView -->
+    <supernova.ui.StarFieldView
+        android:id="@+id/starFieldView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
 
-    <!-- 更新日時カードの include -->
-    <include
-        layout="@layout/updated_card"
+    <!-- スクロール可能なコンテンツ -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"> <!-- ✅ スクロールビューのコンテンツ全体を適用 -->
 
-    <!-- ボタン系カード(LED, Motion, Fire, Alarm)の include -->
-    <include
-        layout="@layout/button_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!-- ボタンを横並びに配置する LinearLayout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="8dp">
-
-        <!-- チェックヒストリーボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGoToSecond"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"/> <!-- ボタン間の余白を設定 -->
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:padding="16dp">
 
-        <!-- リセットボタン -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRESET"
-            style="@style/SupernovaButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Reset"
-            android:layout_weight="1"/>
-    </LinearLayout>
+            <!-- 温度・湿度カード -->
+            <include
+                layout="@layout/sensor_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <!-- 更新日時カード -->
+            <include
+                layout="@layout/updated_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <!-- ボタン系カード(LED, Motion, Fire, Alarm) -->
+            <include
+                layout="@layout/button_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</LinearLayout>
+            <!-- ボタンを横並びに配置 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+
+                <!-- チェックヒストリーボタン -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGoToSecond"
+                    style="@style/SupernovaGradientButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/custom_nosifer"
+                    android:text="History" />
+
+                <!-- リセットボタン -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReset"
+                    style="@style/SupernovaGradientButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/custom_nosifer"
+                    android:text="Reset" />
+            </LinearLayout>
+
+            <!-- Supernova ボタン -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSupernova"
+                android:fontFamily="@font/custom_honk"
+                style="@style/SupernovaGradientButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp"
+                android:text="Supernova"
+                android:backgroundTint="@null"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

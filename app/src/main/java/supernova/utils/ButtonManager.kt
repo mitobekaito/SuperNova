@@ -1,69 +1,71 @@
 package supernova.utils
 
 import android.app.Activity
+import androidx.appcompat.widget.SwitchCompat
 import android.widget.Button
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import supernova.utils.LedManager
-import supernova.utils.MotionManager
-import supernova.utils.FlameManager
+import android.widget.TextView
+import supernova.ui.StarFieldView
 import supernova.ui.R
 
 object ButtonManager {
 
     fun setupButtonListeners(
-        activity: Activity,
-        btnLEDOn: Button, btnLEDOff: Button,
-        btnSoundOn: Button, btnSoundOff: Button,
-        btnFireOn: Button, btnFireOff: Button,
-        btnSupernova: Button, btnReset: Button
+        activity: Activity, tvMoving: TextView,
+        switchLED: SwitchCompat, switchMotion: SwitchCompat, switchFire: SwitchCompat,
+        btnSupernova: Button, btnReset: Button,
+        starFieldView: StarFieldView
     ) {
-        setInitialButtonState(activity, btnLEDOn, btnLEDOff)
-        setInitialButtonState(activity, btnSoundOn, btnSoundOff)
-        setInitialButtonState(activity, btnFireOn, btnFireOff)
-
-        // ✅ LED ON
-        btnLEDOn.setOnClickListener {
-            println("🟢 LED ON ボタンが押されました")
-            updateToggleButtons(activity, true, btnLEDOn, btnLEDOff)
-            sendCommand { LedManager.sendLedCommand("ON") }
+        // ✅ LED トグルスイッチ
+        switchLED.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                println("🟢 LED ON")
+                sendCommand { LedManager.sendLedCommand("ON") }
+            } else {
+                println("🔴 LED OFF")
+                sendCommand { LedManager.sendLedCommand("OFF") }
+            }
         }
 
-        // ✅ LED OFF
-        btnLEDOff.setOnClickListener {
-            println("🔴 LED OFF ボタンが押されました")
-            updateToggleButtons(activity, false, btnLEDOn, btnLEDOff)
-            sendCommand { LedManager.sendLedCommand("OFF") }
+        // ✅ Motion Detected トグルスイッチ
+        switchMotion.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                println("🟢 Motion Detected ON")
+                sendCommand { MotionManager.sendMotionCommand("ON") }
+            } else {
+                println("🔴 Motion Detected OFF")
+                sendCommand { MotionManager.sendMotionCommand("OFF") }
+            }
         }
 
-        // ✅ Motion ON
-        btnSoundOn.setOnClickListener {
-            println("🟢 Motion ON ボタンが押されました")
-            updateToggleButtons(activity, true, btnSoundOn, btnSoundOff)
-            sendCommand { MotionManager.sendMotionCommand("ON") }
+        // ✅ Fire Detected トグルスイッチ
+        switchFire.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                println("🟢 Fire Detected ON")
+                sendCommand { FlameManager.sendFlameCommand("ON") }
+            } else {
+                println("🔴 Fire Detected OFF")
+                sendCommand { FlameManager.sendFlameCommand("OFF") }
+            }
         }
 
-        // ✅ Motion OFF
-        btnSoundOff.setOnClickListener {
-            println("🔴 Motion OFF ボタンが押されました")
-            updateToggleButtons(activity, false, btnSoundOn, btnSoundOff)
-            sendCommand { MotionManager.sendMotionCommand("OFF") }
+        // ✅ Supernova ボタン
+        btnSupernova.setOnClickListener {
+            println("🔥 Supernova ボタンが押されました")
+            starFieldView.stopStarAnimation()
+            activity.runOnUiThread { tvMoving.text = "🔥 Supernova" }
+            sendCommand { SupernovaManager.sendSupernovaCommand("SUPERNOVA") }
         }
 
-        // ✅ Flame ON
-        btnFireOn.setOnClickListener {
-            println("🟢 Flame ON ボタンが押されました")
-            updateToggleButtons(activity, true, btnFireOn, btnFireOff)
-            sendCommand { FlameManager.sendFlameCommand("ON") }
-        }
-
-        // ✅ Flame OFF
-        btnFireOff.setOnClickListener {
-            println("🔴 Flame OFF ボタンが押されました")
-            updateToggleButtons(activity, false, btnFireOn, btnFireOff)
-            sendCommand { FlameManager.sendFlameCommand("OFF") }
+        // ✅ Reset ボタン
+        btnReset.setOnClickListener {
+            println("🔄 Reset ボタンが押されました")
+            starFieldView.startStarAnimation()
+            activity.runOnUiThread { tvMoving.text = "🔄 RESET" }
+            sendCommand { ResetManager.sendResetCommand("RESET") }
         }
 
     }
@@ -79,41 +81,4 @@ object ButtonManager {
         }
     }
 
-    fun setInitialButtonState(activity: Activity, btnOn: Button, btnOff: Button) {
-        val onColor = ContextCompat.getColor(activity, R.color.dark_yellow)
-        val offColor = ContextCompat.getColor(activity, R.color.gray)
-        val textColorOn = ContextCompat.getColor(activity, R.color.black)
-        val textColorOff = ContextCompat.getColor(activity, R.color.white)
-
-        btnOn.setBackgroundColor(onColor)
-        btnOn.setTextColor(textColorOn)
-        btnOff.setBackgroundColor(offColor)
-        btnOff.setTextColor(textColorOff)
-
-        btnOn.tag = "ON"
-        btnOff.tag = "OFF"
-    }
-
-    private fun updateToggleButtons(activity: Activity, isOn: Boolean, btnOn: Button, btnOff: Button) {
-        val onColor = ContextCompat.getColor(activity, R.color.dark_yellow)
-        val offColor = ContextCompat.getColor(activity, R.color.gray)
-        val textColorOn = ContextCompat.getColor(activity, R.color.black)
-        val textColorOff = ContextCompat.getColor(activity, R.color.white)
-
-        if (isOn) {
-            btnOn.setBackgroundColor(onColor)
-            btnOn.setTextColor(textColorOn)
-            btnOff.setBackgroundColor(offColor)
-            btnOff.setTextColor(textColorOff)
-            btnOn.tag = "ON"
-            btnOff.tag = "OFF"
-        } else {
-            btnOn.setBackgroundColor(offColor)
-            btnOn.setTextColor(textColorOff)
-            btnOff.setBackgroundColor(onColor)
-            btnOff.setTextColor(textColorOn)
-            btnOn.tag = "OFF"
-            btnOff.tag = "ON"
-        }
-    }
 }

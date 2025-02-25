@@ -24,8 +24,9 @@
             android:id="@+id/tvUpdated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Updated: --"
-            android:textSize="18sp"
-            android:textColor="@color/white" />
+            android:text="updated : --"
+            android:textSize="23sp"
+            android:textColor="@color/supernovaPurpleLight"
+            android:fontFamily="@font/custom_splash"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

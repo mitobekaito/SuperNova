@@ -1,90 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootFrame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- 履歴のタイトル -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sensor Data History"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"/>
-
-    <!-- スクロール可能なTableLayout -->
-    <ScrollView
+    <!-- 背景画像（アニメーション付き） -->
+    <ImageView
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:src="@drawable/gradient_background"
+        android:scaleType="fitXY" />
 
-        <TableLayout
-            android:id="@+id/tableLayout"
+    <!-- スクロール可能なエリア -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"
-            android:background="@color/white"
-            android:padding="4dp">
+            android:orientation="vertical">
 
-            <!-- ヘッダー行 -->
-            <TableRow
+            <!-- タイトル -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray">
+                android:text="Sensor Data History"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:textColor="@color/teal_200"
+                android:layout_marginBottom="12dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Time"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+            <!-- データヘッダー -->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@android:color/transparent"
+                android:paddingBottom="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Temp"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:text="Date/Time"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
+                        android:textColor="@android:color/white"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Humidity"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Temp (°C)"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
+                        android:textColor="@android:color/white"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Motion"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Hum (%)"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
+                        android:textColor="@android:color/white"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fire"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
-            </TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Motion"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
+                        android:textColor="@android:color/white"/>
 
-        </TableLayout>
-    </ScrollView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Fire"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:fontFamily="@font/custom_bold"
+                        android:textColor="@android:color/white"/>
+                </TableRow>
+            </TableLayout>
 
-    <!-- 戻るボタン -->
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+
+            <!-- RecyclerView (履歴データ一覧) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:padding="4dp"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 戻るボタンを固定 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="10dp"/>
-</LinearLayout>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/SupernovaGradientButtonStyle"
+            android:fontFamily="@font/custom_griffy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="1dp"
+            android:text="Back" />
+    </LinearLayout>
+
+    <!-- 星のカスタムView -->
+    <supernova.ui.StarFieldView
+        android:id="@+id/starFieldView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

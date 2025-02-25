@@ -1,93 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/gradient_background">
+機能紹介（デモ動画）
 
-    <!-- 履歴のタイトル -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sensor Data History"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:fontFamily="@font/custom_font"
-        android:textColor="@color/teal_200"
-        android:layout_marginBottom="10dp"/>
+基本的にaruduino側を映す。
 
-    <!-- スクロール可能なTableLayout -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+アプリを起動
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*"
-            android:padding="4dp">
+画面の説明
+温度、湿度
 
-            <!-- ヘッダー行 -->
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/teal_200">
+LEDをオフにする
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Time"
+arduino側でも見せる
 
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+LEDをオンにする
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Temp"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+arduino側でも見せる
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Humidity"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+人感検知
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Motion"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
+arduino側で動いてどちらも音がなってるのを見せる
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fire"
-                    android:textStyle="bold"
-                    android:padding="8dp"
-                    android:textColor="@color/white"/>
-            </TableRow>
 
-        </TableLayout>
-    </ScrollView>
+人感検知をオフにする
 
-    <!-- 戻るボタン -->
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="10dp"/>
-</LinearLayout>
+arduino側で動いてどちらも音がなっていないのを見せる
+
+火災検知
+
+arduino側でライターの火をつけてどちらも音が鳴っているのを見せる
+
+火災検知をオフにする
+
+arduino側で火をつけてもどちらも音がなってないのを見せる
+
+履歴を見る historybuttom
+
+スクロールしてバックボタン
+
+SUPERNOVAボタンを押す
+
+押すと
+arduino側ではLEDが点灯と音がなる
+android側では背景のアニメーションが停止する
+
+１２．リセットボタンを押す
+
+arduino側ではリセットされる。
+android側でもリセットされれてアニメーションも動き出す。
