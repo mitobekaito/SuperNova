@@ -48,5 +48,12 @@
         <item name="android:foreground">@drawable/ripple_supernova</item>
     </style>
 
+    <!-- スプラッシュ画面のテーマ -->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 
 </resources>
