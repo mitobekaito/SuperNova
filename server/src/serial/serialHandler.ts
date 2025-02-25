@@ -43,7 +43,7 @@ export const setupSerialPort = () => {
 
 /**
  * 🌡 Arduino からの文字列データを解析し、JSON に変換する関数
- * 🌡 Temp: 25.20°C | 💧 Hum: 49.50% | 🔥 Fire: NO | 🚶 PIR: NO
+ * 受信データ: 🌡 Temperature: 25.80°C | 💧 Humidity: 73.60% | 🔥 Fire: NO | 🚶 Motion: NO | 🔴 Alarm: OFF | ⚪ White LED: OFF
  */
 const parseSensorData = (
   rawData: string
@@ -54,25 +54,34 @@ const parseSensorData = (
   flame: boolean;
 } | null => {
   try {
-    // 📌 正規表現で数値を抽出
-    const tempMatch = rawData.match(/Temp:\s*([\d.]+)°C/);
-    const humMatch = rawData.match(/Hum:\s*([\d.]+)%/);
-    const fireMatch = rawData.match(/Fire:\s*(YES|NO)/);
-    const motionMatch = rawData.match(/PIR:\s*(YES|NO)/);
+    // 🌡 実際のログでは "Temp: 25.20°C" なので、正規表現を "Temp:" に
+     const tempMatch = rawData.match(/Temp:\s*([\d.]+)°C/);
+
+    // 💧 "Humidity" はそのまま "Humidity:" でOK
+    const humMatch = rawData.match(/Humidity:\s*([\d.]+)%/);
+
+    // 🔥 "Fire: NO" or "Fire: YES" or "Fire: ON"
+    const fireMatch = rawData.match(/Fire:\s*(YES|NO|ON|OFF)/);
+
+    // 🚶 "Motion: NO" or "Motion: YES" or "Motion: ON"
+    const motionMatch = rawData.match(/Motion:\s*(YES|NO|ON|OFF)/);
 
     if (!tempMatch || !humMatch || !fireMatch || !motionMatch) {
-      console.warn("⚠️ データの一部が欠落しています:", rawData);
+      console.warn("⚠️ Some data is missing:", rawData);
       return null;
     }
 
     return {
       temperature: parseFloat(tempMatch[1]),
       humidity: parseFloat(humMatch[1]),
-      flame: fireMatch[1] === "YES",
-      motion: motionMatch[1] === "YES",
+      flame: fireMatch[1] === "YES" || fireMatch[1] === "ON",
+      motion: motionMatch[1] === "YES" || motionMatch[1] === "ON",
     };
   } catch (error) {
-    console.error("❌ センサーデータの解析エラー:", error);
+    console.error("❌ Sensor data parsing error:", error);
     return null;
   }
 };
+
+
+

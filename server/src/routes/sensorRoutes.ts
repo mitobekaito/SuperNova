@@ -1,9 +1,19 @@
-import express from "express";
-import { getLatestSensorData, saveSensorData } from "../controllers/sensorController";
+import { Router } from "express";
+import {
+  getLatestSensorData,
+  getAllSensorData,
+  saveSensorData,
+} from "../controllers/sensorController";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/sensor-data", getLatestSensorData);
+// 最新1件のデータ
+router.get("/sensor-latest", getLatestSensorData);
+
+// 全データ
+router.get("/sensor-data", getAllSensorData);
+
+// データ保存 (POST)
 router.post("/sensor-data", saveSensorData);
 
 export default router;

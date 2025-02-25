@@ -14,7 +14,7 @@ export const handleMotionCommand = (req: Request, res: Response): void => {
     // ✅ 受信したコマンドをコンソールに出力
     console.log(`🏃 受信した Motion コマンド: ${motion_command}`);
 
-    sendCommandToArduino(motion_command); // ✅ `motion_command` を Arduino に送信
+    sendCommandToArduino(`MOTION ${motion_command}`); // ✅ `motion_command` を Arduino に送信
 
     // ✅ 受け取ったデータをそのままレスポンスとして返す
     res.json({
